@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+
+class User(models.Model):
+    name = models.CharField(max_length=255)
+    bio = models.CharField(max_length=510)
+    rating = models.PositiveIntegerField()
+    image = models.CharField(max_length=255)
