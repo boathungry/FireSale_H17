@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3 class="red">Catalog</h3>
+    <div class="candies">
+        {% for item in items %}
+            {{ item.name }}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -3,9 +3,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index),
-    url(r'^get_category/(?P<pk>\d+)$', views.get_category_by, name='get_category'),
+    # http/localhost:8000/candies
+    path('', views.index, name="catalog-index"),
     path('<int:id>', views.get_category_by_id, name='category-details'),
+    path('create_item', views.create_item, name='create_item'),
 
 ]
 
