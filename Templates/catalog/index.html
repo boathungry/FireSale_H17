@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3 class="red">Catalog</h3>
+    <div class="input-group">
+        <input type="search" class="form-control" id="search-box" placeholder="Enter your search here..." />
+        <div class="input-grp-btn">
+            <button type="button" id="search-btn" class="btn btn-default">Search</button>
+        </div>
+    </div>
+
+    <div class="candies">
+        {% for item in items %}
+            {{ item.name }}
+        {% endfor %}
+    </div>
+{% endblock %}

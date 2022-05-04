@@ -1,11 +1,15 @@
 from django.shortcuts import render, get_object_or_404
-from catalog.models import Category
+from catalog.models import Category, Item
 
 
 # Create your views here.
 
 def index(request):
-    context = {'categories': Category.objects.all().order_by('name')}
+    if 'category' in request.GET:
+        context = {'items': Item.objects.filter(catid__item=request.GET['category'])}
+        return render(request, 'catalog/index.html', context)
+    Items = Item.objects.all().order_by('name')
+    context = {'items': Items}
     return render(request, 'catalog/index.html', context)
 
 
