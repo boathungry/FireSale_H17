@@ -6,3 +6,8 @@ class User(models.Model):
     bio = models.CharField(max_length=510)
     rating = models.PositiveIntegerField()
     image = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    password = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.name} ({self.id})"
