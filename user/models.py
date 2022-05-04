@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User as AuthUser
 
 
 class User(models.Model):
@@ -6,8 +7,7 @@ class User(models.Model):
     bio = models.CharField(max_length=510)
     rating = models.PositiveIntegerField()
     image = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
+    auth = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name} ({self.id})"
