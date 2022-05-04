@@ -10,4 +10,4 @@ class Offer(models.Model):
     buyerid = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.amount} offered on {self.datetime}, buyer id: {self.buyerid}, item id: {self.itemid}"
+        return f"({self.id}) {self.amount} offered on {self.datetime}, buyer id: {self.buyerid}, item id: {self.itemid}"
