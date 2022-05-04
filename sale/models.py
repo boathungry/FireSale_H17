@@ -12,4 +12,4 @@ class Sale(models.Model):
     shipping_address = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"({self.id}) Item {self.itemid} sold to user {self.buyerid} for {self.price}"
+        return f"({self.id}) {self.itemid} sold to {self.buyerid} for {self.price}"
