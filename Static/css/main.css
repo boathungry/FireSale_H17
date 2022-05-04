@@ -1,3 +1,4 @@
-title {
-    background-image: linear-gradient(#E7BF9B, #FFFFFF)
+
+.container-fluid {
+    background-image: linear-gradient(to right, yellow, red);
 }
