@@ -1,4 +1,12 @@
-
-.container-fluid {
-    background-image: linear-gradient(to right, yellow, red);
+body {
+    font-family: Tahoma;
 }
+.container-fluid {
+    background-image: linear-gradient( #E7BF9B, #FFFFFF);
+}
+
+.navbar-logo {
+    vertical-align: text-bottom;
+}
+
+

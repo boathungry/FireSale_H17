@@ -1,8 +1,12 @@
+{% load static %}
+
 <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">FireSale</a>
+          <a class="navbar-brand" href="/">FireSale
+              <span><img src={% static "images/firelogo.png"%} width="30" height="30" class="navbar-logo" alt="FireSale Logo"></span>
+          </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
