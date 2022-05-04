@@ -8,3 +8,6 @@ class Offer(models.Model):
     amount = models.PositiveIntegerField()
     itemid = models.ForeignKey(Item, on_delete=models.CASCADE)
     buyerid = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.amount} offered on {self.datetime}, buyer id: {self.buyerid}, item id: {self.itemid}"
