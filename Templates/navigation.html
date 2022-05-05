@@ -39,7 +39,7 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-
+    </div>
         <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                     <li><a href="/User/account"><span class="btn btn-outline-secondary btn-small" role="button">Account</span></a></li>
@@ -48,8 +48,7 @@
                     <li><a href="/User/register"><span class="btn btn-outline-secondary btn-small" role="button">Sign Up</span></a></li>
                     <li><a href="/User/login"><span class="btn btn-outline-secondary btn-small" role="button">Login</span></a></li>
                 {% endif %}
-            </ul>
-    </div>
+        </ul>
     </div>
   </div>
 </nav>
