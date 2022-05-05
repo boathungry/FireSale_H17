@@ -32,19 +32,24 @@
           <a class="nav-link" href="/catalog/?category=6">Other</a>
         </li>
       </ul>
-      <form class="d-flex">
+
+    <!-- Search bar -->
+    <div class="col-4 d-flex justify-content-end align-items-center">
+        <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+
         <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                    <li><a href="/User/account"><span class="glyphicon glyphicon-user"></span> Account</a></li>
-                    <li><a href="/User/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+                    <li><a href="/User/account"><span class="btn btn-outline-secondary btn-small" role="button">Account</span></a></li>
+                    <li><a href="/User/logout"><span class="btn btn-outline-secondary btn-small" role="button">Log out</span></a></li>
                     {% else %}
-                    <li><a href="/User/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="/User/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="/User/register"><span class="btn btn-outline-secondary btn-small" role="button">Sign Up</span></a></li>
+                    <li><a href="/User/login"><span class="btn btn-outline-secondary btn-small" role="button">Login</span></a></li>
                 {% endif %}
             </ul>
+    </div>
     </div>
   </div>
 </nav>
