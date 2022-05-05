@@ -26,8 +26,13 @@ def create_item(request):
     if request.method == 'POST':
         form = ItemCreateForm(data=request.POST)
         if form.is_valid():
-            item = form.save()
-            return redirect('candy-index')
+            item = Item()
+            item.name = request.POST.get('name')
+            item.condition = request.POST.get('condition')
+            item.buyout = request.POST.get('description')
+            item.buyout = request.POST.get('buyout')
+            item.save()
+            return redirect('catalog-index')
     else:
         form = ItemCreateForm()
     return render(request, 'catalog/create_item.html', {

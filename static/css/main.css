@@ -1,12 +1,39 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+main > .container {
+  padding: 60px 15px 0;
+}
+
 body {
+    background-image: linear-gradient( #E7BF9B, #FFFFFF);
+    background-attachment: fixed;
+    min-height: 75rem;
     font-family: Tahoma;
 }
 .container-fluid {
-    background-image: linear-gradient( #E7BF9B, #FFFFFF);
+
 }
 
 .navbar-logo {
     vertical-align: text-bottom;
 }
+
+.bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+@media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
 
 
