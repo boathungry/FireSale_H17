@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from catalog.models import Category, Item
+from django.contrib.auth.decorators import login_required
+from user.models import User
+
 
 
 # Create your views here.
@@ -21,16 +24,22 @@ def get_item_by_id(request, id):
         'item': get_object_or_404(Item, pk=id)
     })
 
-
+@login_required
 def create_item(request):
     if request.method == 'POST':
         form = ItemCreateForm(data=request.POST)
+        print(request.user)
+        authuser = request.user
+        user = User.objects.get(auth=authuser.id)
         if form.is_valid():
             item = Item()
-            item.name = request.POST.get('name')
+            item.name = form.cleaned_data.get('name')
             item.condition = request.POST.get('condition')
-            item.buyout = request.POST.get('description')
+            item.description = request.POST.get('description')
             item.buyout = request.POST.get('buyout')
+            item.catid = form.cleaned_data.get('catid')
+            item.image = form.cleaned_data.get('image')
+            item.sellerid = user
             item.save()
             return redirect('catalog-index')
     else:
