@@ -4,17 +4,15 @@ html {
 }
 
 main > .container {
-  padding: 60px 15px 0;
+  padding: 60px 15px 35px;
 }
 
 body {
+    
     background-image: linear-gradient( #E7BF9B, #FFFFFF);
     background-attachment: fixed;
     min-height: 75rem;
     font-family: Tahoma;
-}
-.container-fluid {
-
 }
 
 .navbar-logo {
@@ -34,6 +32,8 @@ body {
           font-size: 3.5rem;
         }
       }
+
+
 
 
 
