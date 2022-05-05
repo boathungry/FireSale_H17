@@ -1,8 +1,14 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User as AuthUser
 from django.shortcuts import render, redirect
+from django.core.exceptions import ObjectDoesNotExist
 from .forms import AccountCreationForm
 from .models import User
+from catalog.models import Item
+
+
+def get_user(auth_id):
+    return User.objects.get(auth=auth_id)
 
 
 def register(request):
@@ -37,6 +43,24 @@ def create_account(request, id):
 
 def view_account(request):
     auth_id = request.user.id
-    auth_user = AuthUser.objects.get(id=auth_id)
     user = User.objects.get(auth=auth_id)
-    return render(request, 'user/account.html', context={'user': user})
+    user_context = {'user_name': user.name, 'user_bio': user.bio, 'user_image': user.image, 'user_rating': user.rating}
+    return render(request, 'user/account.html', context=user_context)
+
+
+def view_my_items(request):
+    user = get_user(request.user.id)
+    try:
+        user_items = Item.objects.filter(sellerid=user.id)
+        return render(request, 'user/my_items.html', {'user_items': user_items})
+    except ObjectDoesNotExist:
+        return render(request, 'user/my_items.html')
+
+
+def view_my_offers(request):
+    return render(request, 'user/my_offers.html')
+
+
+def view_account_settings(request):
+    return render(request, 'user/account_settings.html')
+
