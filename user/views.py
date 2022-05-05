@@ -12,7 +12,7 @@ def register(request):
             user = form.save()
             return redirect(f'create_account/{user.id}')
     return render(request, 'user/register.html', {
-        'form':UserCreationForm()
+        'form': UserCreationForm()
     })
 
 
@@ -31,5 +31,12 @@ def create_account(request, id):
     else:
         form = AccountCreationForm()
     return render(request, 'user/create_account.html', {
-        'form':AccountCreationForm()
+        'form': AccountCreationForm()
     })
+
+
+def view_account(request):
+    auth_id = request.user.id
+    auth_user = AuthUser.objects.get(id=auth_id)
+    user = User.objects.get(auth=auth_id)
+    return render(request, 'user/account.html', context={'user': user})

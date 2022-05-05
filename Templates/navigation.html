@@ -32,7 +32,7 @@
 </form>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+                    <li><a href="/User/account"><span class="glyphicon glyphicon-user"></span> Account</a></li>
                     <li><a href="/User/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
                     {% else %}
                     <li><a href="/User/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
