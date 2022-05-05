@@ -11,7 +11,7 @@ from forms.item_form import ItemCreateForm
 
 def index(request):
     if 'category' in request.GET:
-        context = {'items': Item.objects.filter(catid__item=request.GET['category'])}
+        context = {'items': Item.objects.filter(catid__item=request.GET['category']).order_by('name')}
         return render(request, 'catalog/index.html', context)
     Items = Item.objects.all().order_by('name')
     context = {'items': Items}
@@ -47,4 +47,11 @@ def create_item(request):
     return render(request, 'catalog/create_item.html', {
         'form': form
     })
+
+
+def view_buyout_item(request):
+    return render(request, 'catalog/buyout_item.html')
+
+def view_offer_item(request):
+    return render(request, 'catalog/offer_item.html')
 

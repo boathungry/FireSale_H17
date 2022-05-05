@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>{{ item.name }}</h1>
-    <p>{{ item.description }}</p>
-    <p>${{ item.buyout }}</p>
+    <div class="ItemInfo">
+        <p>Item Name: {{ item.name }}</p>
+        <p>Description: {{ item.description }}</p>
+        <p>Buyout Price: ${{ item.buyout }}</p>
+    </div>
+    <div class="buyout-btn">
+        <a class="btn btn-primary" href="/catalog/buyout_item">Buyout</a>
+        <a class="btn btn-primary" href="/catalog/offer_item">Offer</a>
+    </div>
     <img class="item-img" src="{{ item.image }}" />
 {% endblock %}
