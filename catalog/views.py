@@ -16,9 +16,9 @@ def index(request):
 
 
 
-def get_category(request,pk):
-    return render(request, 'catalog/catalog_category_details.html', {
-        'category': get_object_or_404(Category, pk)
+def get_item_by_id(request, id):
+    return render(request, 'catalog/item_details.html', {
+        'item': get_object_or_404(Item, pk=id)
     })
 
 

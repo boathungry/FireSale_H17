@@ -16,6 +16,7 @@ class Item(models.Model):
     catid = models.ForeignKey(Category, on_delete=models.CASCADE)
     sellerid = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.CharField(max_length=255)
+    condition = models.CharField(max_length=255)
 
     def __str__(self):
         return f"{self.name} ({self.id}), Seller: {self.sellerid}"

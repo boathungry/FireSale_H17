@@ -3,7 +3,7 @@
     <h3 class="red">Catalog</h3>
     <div class="candies">
         {% for item in items %}
-            {{ item.name }}
+            {% include 'catalog/single_item.html' with item=item %}
         {% endfor %}
     </div>
 {% endblock %}
