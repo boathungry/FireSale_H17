@@ -37,6 +37,6 @@ def create_account(request, id):
 
 def view_account(request):
     auth_id = request.user.id
-    auth_user = AuthUser.objects.get(id=auth_id)
     user = User.objects.get(auth=auth_id)
-    return render(request, 'user/account.html', context={'user': user})
+    user_context = {'user_name': user.name, 'user_bio': user.bio, 'user_image': user.image, 'user_rating': user.rating}
+    return render(request, 'user/account.html', context=user_context)

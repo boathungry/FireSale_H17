@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="account-info">
+        <h2>Account</h2>
+        <img src="{{ user_image }}" />
+        <h4>{{ user_name }}</h4>
+        <p>{{ user_bio }}</p>
     </div>
 {% endblock %}
