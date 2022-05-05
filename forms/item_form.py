@@ -5,7 +5,7 @@ from catalog.models import Item
 class ItemCreateForm(ModelForm):
     class Meta:
         model = Item
-        exclude = ['id']
+        exclude = ['id', 'sellerid']
         exclude = ['sellerid']
         widgets = {
             'name': widgets.TextInput(attrs={'class': 'form-control'}),
