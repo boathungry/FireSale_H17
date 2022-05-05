@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from .forms import AccountCreationForm
 from .models import User
 from catalog.models import Item
+from offer.models import Offer
 
 
 def get_user(auth_id):
@@ -58,7 +59,15 @@ def view_my_items(request):
 
 
 def view_my_offers(request):
-    return render(request, 'user/my_offers.html')
+    user = get_user(request.user.id)
+    try:
+        user_offers = Offer.objects.filter(buyerid=user.id)
+        item_list = []
+        for offer in user_offers:
+            item_list.append(Item.objects.get(id=offer.itemid.id))
+        return render(request, 'user/my_offers.html', {'user_offers': user_offers, 'item_list': item_list})
+    except ObjectDoesNotExist:
+        return render(request, 'user/my_offers.html')
 
 
 def view_account_settings(request):

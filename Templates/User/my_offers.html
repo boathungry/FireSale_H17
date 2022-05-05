@@ -1,3 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+    {% if user_offers != null %}
+        {% for offer in user_offers %}
+            {% for item in item_list %}
+                {% if item.id == offer.itemid.id %}
+                    <img src="{{ item.image }}" />
+                {% endif %}
+            {% endfor %}
+            <h4>{{ offer.itemid }}</h4>
+        {% endfor %}
+    {% endif %}
 {% endblock %}
