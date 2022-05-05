@@ -3,15 +3,14 @@ from django import forms
 from catalog.models import Item
 
 class ItemCreateForm(ModelForm):
-    image = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}),)
     class Meta:
         model = Item
         exclude = ['id']
         exclude = ['sellerid']
         widgets = {
-            'Item Name': widgets.TextInput(attrs={'class': 'form-control'}),
-            'Condition': widgets.TextInput(attrs={'class': 'form-control'}),
-            'Description': widgets.Select(attrs={'class': 'form-control'}),
-            'Ships To': widgets.NumberInput(attrs={'class': 'form-control'}),
-            'Pick Up Available': widgets.Select(attrs={'class': 'form-control'}),
+            'name': widgets.TextInput(attrs={'class': 'form-control'}),
+            'condition': widgets.TextInput(attrs={'class': 'form-control'}),
+            'description': widgets.TextInput(attrs={'class': 'form-control'}),
+            'buyout': widgets.TextInput(attrs={'class': 'form-control'}),
+            'image': widgets.TextInput(attrs={'class': 'form-control'})
         }
