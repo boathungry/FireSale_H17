@@ -8,12 +8,13 @@ main > .container {
 }
 
 body {
+    background-image: linear-gradient( #E7BF9B, #FFFFFF);
+    background-attachment: fixed;
     min-height: 75rem;
-    padding-top: 4.5rem;
     font-family: Tahoma;
 }
 .container-fluid {
-    background-image: linear-gradient( #E7BF9B, #FFFFFF);
+
 }
 
 .navbar-logo {
