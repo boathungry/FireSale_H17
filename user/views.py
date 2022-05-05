@@ -40,3 +40,14 @@ def view_account(request):
     user = User.objects.get(auth=auth_id)
     user_context = {'user_name': user.name, 'user_bio': user.bio, 'user_image': user.image, 'user_rating': user.rating}
     return render(request, 'user/account.html', context=user_context)
+
+
+def view_my_items(request):
+    return render(request, 'user/my_items.html')
+
+
+def view_my_offers(request):
+    return render(request, 'user/my_offers.html')
+
+def view_account_settings(request):
+    return render(request, 'user/account_settings.html')
