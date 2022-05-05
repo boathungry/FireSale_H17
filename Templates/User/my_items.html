@@ -1,3 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
+    {% if user_items != null %}
+        {% for item in user_items %}
+            <img src="{{ item.image }}" />
+            <h4>{{ item.name }}</h4>
+        {% endfor %}
+
+    {% endif %}
 {% endblock %}
