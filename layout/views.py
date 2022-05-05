@@ -3,4 +3,4 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 def index(request):
-    return redirect('catalog-index')
+    return render(request, 'layout/index.html')
