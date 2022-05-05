@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
-{% block content %}
-    <div class="LayOut">
-        <h2>Welcome to the FireSale homepage!</h2>
-    </div>
-{% endblock %}
+    {% block content %}
+    {% if user.is_authenticated %}
+        <!-- User Home Page -->
+        <div class="UserLayOut">
+            <h2>Welcome to the FireSale homepage User!</h2>
+        </div>
+    {% else %}
+    <!-- Homepage -->
+        <div class="LayOut">
+            <h2>Welcome to the FireSale homepage!</h2>
+        </div>
+    {% endif %}
+    {% endblock %}
