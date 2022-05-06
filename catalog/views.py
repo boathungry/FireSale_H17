@@ -18,8 +18,8 @@ def index(request):
         context = {'items': Item.objects.filter(catid=request.GET['category']).order_by('name')}
         return render(request, 'catalog/index.html', context)
 
-    Items = Item.objects.all().order_by('name')
-    context = {'items': Items}
+    items = Item.objects.all().order_by('name')
+    context = {'items': items}
     return render(request, 'catalog/index.html', context)
 
 
