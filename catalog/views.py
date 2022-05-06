@@ -14,6 +14,7 @@ def index(request):
         search_filter = request.GET['search_filter']
         items = list(Item.objects.filter(name__icontains=search_filter).values())
         return JsonResponse({'data': items})
+
     if 'category' in request.GET:
         context = {'items': Item.objects.filter(catid=request.GET['category']).order_by('name')}
         return render(request, 'catalog/index.html', context)

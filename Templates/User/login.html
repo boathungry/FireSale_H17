@@ -1,9 +1,13 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
-    <h1>Log in</h1>
-    <form class="form form-horizontal" method="post">
-        {% csrf_token %}
-        {{ form }}
+    <main class="text-center form-signin">
+        <img class="mb-4" src={% static "images/firelogo.png" %} alt="firelogo" width="60" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <form class="form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
     <input type="submit" class="btn btn-secondary" value="Log in" />
     </form>
+    </main>
 {% endblock %}
