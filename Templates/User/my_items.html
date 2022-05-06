@@ -2,8 +2,10 @@
 {% block content %}
     {% if user_items != null %}
         {% for item in user_items %}
-            <img src="{{ item.image }}" />
-            <h4>{{ item.name }}</h4>
+            {% include 'catalog/single_item.html' with item=item %}
         {% endfor %}
+    {% else %}
+        <h4>No items</h4>
     {% endif %}
+    <a class="btn btn-primary" href="/catalog/create_item">Create new item</a>
 {% endblock %}

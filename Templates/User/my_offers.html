@@ -4,10 +4,10 @@
         {% for offer in user_offers %}
             {% for item in item_list %}
                 {% if item.id == offer.itemid.id %}
-                    <img src="{{ item.image }}" />
+                    {% include 'catalog/single_item.html' with item=item %}
+                    <h4>You offered: {{ offer.amount }}$</h4>
                 {% endif %}
             {% endfor %}
-            <h4>{{ offer.itemid }}</h4>
         {% endfor %}
     {% endif %}
 {% endblock %}
