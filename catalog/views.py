@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from catalog.models import Category, Item
 from django.contrib.auth.decorators import login_required
 from user.models import User
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -9,9 +10,14 @@ from forms.item_form import ItemCreateForm
 
 
 def index(request):
+    if 'search_filter' in request.GET:
+        search_filter = request.GET['search_filter']
+        items = list(Item.objects.filter(name__icontains=search_filter).values())
+        return JsonResponse({'data': items})
     if 'category' in request.GET:
         context = {'items': Item.objects.filter(catid__item=request.GET['category']).order_by('name')}
         return render(request, 'catalog/index.html', context)
+
     items = Item.objects.all().order_by('name')
     context = {'items': items}
     return render(request, 'catalog/index.html', context)

@@ -8,7 +8,7 @@ main > .container {
 }
 
 body {
-    
+
     background-image: linear-gradient( #E7BF9B, #FFFFFF);
     background-attachment: fixed;
     min-height: 75rem;
@@ -32,6 +32,10 @@ body {
           font-size: 3.5rem;
         }
       }
+
+.ms-n5 {
+    margin-left: -40px;
+}
 
 
 
