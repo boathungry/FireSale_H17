@@ -29,6 +29,7 @@ def create_account(request, id):
         if form.is_valid():
             user = User()
             user.name = request.POST.get('name')
+            user.email = request.POST.get('email')
             user.bio = request.POST.get('bio')
             user.image = request.POST.get('image')
             user.rating = 0
@@ -76,6 +77,7 @@ def view_account_settings(request):
         form = AccountCreationForm(data=request.POST)
         if form.is_valid():
             user.name = request.POST.get('name')
+            user.email = request.POST.get('email')
             user.bio = request.POST.get('bio')
             user.image = request.POST.get('image')
             user.save()

@@ -7,6 +7,7 @@ class User(models.Model):
     bio = models.CharField(max_length=510)
     rating = models.PositiveIntegerField(default=0)
     image = models.CharField(max_length=999)
+    email = models.CharField(max_length=255, blank=True)
     auth = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
 
     def __str__(self):
