@@ -15,11 +15,11 @@ def index(request):
         items = list(Item.objects.filter(name__icontains=search_filter).values())
         return JsonResponse({'data': items})
     if 'category' in request.GET:
-        context = {'items': Item.objects.filter(catid__item=request.GET['category']).order_by('name')}
+        context = {'items': Item.objects.filter(catid=request.GET['category']).order_by('name')}
         return render(request, 'catalog/index.html', context)
 
-    items = Item.objects.all().order_by('name')
-    context = {'items': items}
+    Items = Item.objects.all().order_by('name')
+    context = {'items': Items}
     return render(request, 'catalog/index.html', context)
 
 

@@ -19,6 +19,12 @@ body {
     vertical-align: text-bottom;
 }
 
+.item-img {
+    width: 200px;
+    height: auto;
+}
+
+
 .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
