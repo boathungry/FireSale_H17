@@ -71,5 +71,16 @@ def view_my_offers(request):
 
 
 def view_account_settings(request):
-    return render(request, 'user/account_settings.html')
+    user = get_user(request.user.id)
+    if request.method == 'POST':
+        form = AccountCreationForm(data=request.POST)
+        if form.is_valid():
+            user.name = request.POST.get('name')
+            user.bio = request.POST.get('bio')
+            user.image = request.POST.get('image')
+            user.save()
+            return redirect('account')
+    return render(request, 'user/account_settings.html', {
+        'form': AccountCreationForm(initial={'name': user.name, 'bio': user.bio, 'image': user.image})
+    })
 
