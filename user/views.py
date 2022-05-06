@@ -83,6 +83,6 @@ def view_account_settings(request):
             user.save()
             return redirect('account')
     return render(request, 'user/account_settings.html', {
-        'form': AccountCreationForm(initial={'name': user.name, 'bio': user.bio, 'image': user.image})
+        'form': AccountCreationForm(initial={'name': user.name, 'email': user.email, 'bio': user.bio, 'image': user.image})
     })
 
