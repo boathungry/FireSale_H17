@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-md navbar-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">FireSale
-              <span><img src={% static "images/firelogo.png"%} width="30" height="30" class="navbar-logo" alt="FireSale Logo"></span>
+              <span><img src={% static "images/fire_logo.png" %} width="30" height="30" class="navbar-logo" alt="FireSale Logo"></span>
           </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -48,10 +48,7 @@
     </div>
         <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                    <!-- Nota thetta í staðinn fyrir 'Account' til að setja inn profile mynd'
-                    <img class="rounded-circle article-img" src="{{ request.user.profile.image.url }}" id="img">
-                    ref: https://stackoverflow.com/questions/56942757/display-profile-image-in-nav-bar -->
-                    <li><a href="/User/account"><span class="btn btn-outline-secondary btn-sm" role="button">Account</span></a></li>
+                    <img class="rounded-circle article-img" src="{{ request.user.image }}" id="img" alt="Profile picture">
                     <li><a href="/User/logout"><span class="btn btn-outline-secondary btn-sm" role="button">Log out</span></a></li>
                     {% else %}
                     <li><a href="/User/register"><span class="btn btn-outline-secondary btn-sm" role="button">Sign Up</span></a></li>
