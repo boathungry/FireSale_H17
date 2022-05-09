@@ -5,7 +5,7 @@
     <main class="text-center form-signin">
         <img class="mb-4" src={% static "images/fire_logo.png" %} alt="firelogo" width="60" height="57">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-            <form class="form" method="post">
+            <form enctype="multipart/form-data" class="form" method="post">
             {% csrf_token %}
             {{ form|crispy }}
     <input type="submit" class="btn btn-secondary" value="Log in" />

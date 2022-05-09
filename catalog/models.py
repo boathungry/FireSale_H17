@@ -15,7 +15,7 @@ class Item(models.Model):
     buyout = models.PositiveIntegerField()
     catid = models.ForeignKey(Category, on_delete=models.CASCADE)
     sellerid = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.CharField(max_length=255)
+    image = models.ImageField(upload_to="item_pics/")
     condition = models.CharField(max_length=255)
 
     def __str__(self):

@@ -6,7 +6,7 @@ class User(models.Model):
     name = models.CharField(max_length=255)
     bio = models.CharField(max_length=510)
     rating = models.PositiveIntegerField(default=0)
-    image = models.ImageField(default="default_pic.img", upload_to='profile_pics')
+    image = models.ImageField()
     email = models.EmailField(max_length=255, blank=True)
     auth = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
 

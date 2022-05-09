@@ -118,6 +118,9 @@ p { color: #111;
     margin-left: -15px;
 }
 
+.asteriskField {
+    display: none;
+}
 
 
 

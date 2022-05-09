@@ -15,19 +15,19 @@ def get_user(auth_id):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(data=request.POST)
+        form = UserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
             return redirect(f'create_account/{user.id}')
         messages.error(request, 'Error. Account not created')
     return render(request, 'user/register.html', {
-        'form': UserCreationForm()
+        'form': form
     })
 
 
 def create_account(request, id):
     if request.method == 'POST':
-        form = AccountCreationForm(data=request.POST)
+        form = AccountCreationForm(request.POST, request.FILES)
         if form.is_valid():
             user = User()
             user.name = request.POST.get('name')
@@ -44,7 +44,7 @@ def create_account(request, id):
     else:
         form = AccountCreationForm()
     return render(request, 'user/create_account.html', {
-        'form': AccountCreationForm()
+        'form': form
     })
 
 
@@ -79,7 +79,7 @@ def view_my_offers(request):
 def view_account_settings(request):
     user = get_user(request.user.id)
     if request.method == 'POST':
-        form = AccountCreationForm(data=request.POST)
+        form = AccountCreationForm(request.POST, request.FILES)
         if form.is_valid():
             user.name = request.POST.get('name')
             user.email = request.POST.get('email')
@@ -90,4 +90,5 @@ def view_account_settings(request):
     return render(request, 'user/account_settings.html', {
         'form': AccountCreationForm(initial={'name': user.name, 'email': user.email, 'bio': user.bio, 'image': user.image})
     })
+
 

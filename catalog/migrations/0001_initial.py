@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=255)),
                 ('description', models.CharField(blank=True, max_length=510)),
                 ('buyout', models.PositiveIntegerField()),
-                ('image', models.CharField(max_length=255)),
+                ('image', models.ImageField(upload_to="item_pics/")),
                 ('catid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.category')),
                 ('sellerid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='user.user')),
             ],

@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
     <h4>Account settings</h4>
-    <form class="form form-horizontal" method="post">
+    <form class="form" enctype="multipart/form-data" method="post">
         {% csrf_token %}
-        {{ form }}
+        {{ form|crispy }}
     <input type="submit" class="btn btn-primary" value="Save" />
     </form>
 {% endblock %}
