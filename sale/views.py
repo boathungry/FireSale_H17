@@ -11,7 +11,7 @@ from offer.models import Offer
 
 
 @login_required
-def create_checkout(request):
+def create_checkout(request, id):
     if request.method == 'POST':
         form = CheckoutCreateForm(data=request.POST)
         authuser = request.user

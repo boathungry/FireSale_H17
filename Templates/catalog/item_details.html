@@ -6,7 +6,7 @@
         <p>Buyout Price: ${{ item.buyout }}</p>
     </div>
     <div class="buyout-offer-btn">
-        <a class="btn btn-primary" href="/sale/buyout_item">Buyout</a>
+        <a class="btn btn-primary" href="/sale/buyout_item/{{ item.id }}">Buyout</a>
         <input type="number" id="make-offer-input" min="1" />
         <button type="button" id="make-offer-btn" class="btn btn-primary">Make an offer</button>
     </div>
