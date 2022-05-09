@@ -28,7 +28,7 @@ def create_checkout(request, id):
             return redirect('catalog-index')
     else:
         form = CheckoutCreateForm()
-    return render(request, 'catalog/create_item.html', {
+    return render(request, 'sale/buyout_item.html', {
         'form': form
     })
 
