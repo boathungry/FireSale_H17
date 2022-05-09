@@ -35,6 +35,3 @@ def create_checkout(request, id):
 
 def view_buyout_item(request):
     return render(request, 'sale/buyout_item.html')
-
-def view_offer_item(request):
-    return render(request, 'sale/offer_item.html')
