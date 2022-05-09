@@ -18,10 +18,8 @@ def register(request):
         form = UserCreationForm(data=request.POST)
         if form.is_valid():
             user = form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!')
             return redirect(f'create_account/{user.id}')
-        messages.error(request, "Error. Account not created.")
+        messages.error(request, 'Error. Account not created')
     return render(request, 'user/register.html', {
         'form': UserCreationForm()
     })
@@ -39,9 +37,10 @@ def create_account(request, id):
             user.rating = 0
             user.auth = AuthUser.objects.get(id=id)
             user.save()
-            messages.success('Account created!')
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}!')
             return redirect('login')
-        messages.error('Error. Unable to create account')
+        messages.error('Error. Unable to create account.')
     else:
         form = AccountCreationForm()
     return render(request, 'user/create_account.html', {
