@@ -16,15 +16,16 @@ def create_checkout(request, id):
         form = CheckoutCreateForm(data=request.POST)
         authuser = request.user
         user = User.objects.get(auth=authuser.id)
+        item = Item.objects.get(id=id)
         if form.is_valid():
             sale = Sale()
             sale.name = form.cleaned_data.get('billing name')
             sale.buyerid = user
-            sale.sellerid = Item.objects.get.sellerid
-            sale.itemid = Item.objects.get.itemid
-            sale.price = Offer.objects.get.amount
+            sale.sellerid = item.sellerid
+            sale.itemid = item
+            sale.price = item.buyout
             sale.shipping_address = form.cleaned_data.get('address')
-            sale.shipped = Sale.objects.get.shipped
+            sale.shipped = None
             return redirect('catalog-index')
     else:
         form = CheckoutCreateForm()
