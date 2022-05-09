@@ -7,7 +7,10 @@
     </div>
     <div class="buyout-offer-btn">
         <a class="btn btn-primary" href="/sale/buyout_item">Buyout</a>
-        <a class="btn btn-primary" href="/sale/offer_item">Offer</a>
+        <input type="number" id="make-offer-input" min="1" />
+        <button type="button" id="make-offer-btn" class="btn btn-primary">Make an offer</button>
     </div>
     <img class="item-img" src="{{ item.image }}" />
+    {% load static %}
+    <script src="{% static 'js/offer.js' %}"></script>
 {% endblock %}
