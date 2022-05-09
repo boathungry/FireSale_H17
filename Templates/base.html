@@ -20,19 +20,18 @@
     {% block navbar %}
     {% endblock %}
 
+
+
     <!-- content -->
 <main class="flex-shrink-1">
     <div class="container">
         <div class="col-md-8">
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tag }}">
-                    {{ message }}
-                    </div>
-                {% endfor%}
-            {% endif %}
-        {% block content %}
-        {% endblock %}
+
+            <!-- Messages -->
+            {% include 'messages.html' %}
+
+            {% block content %}
+            {% endblock %}
         </div>
     </div>
 </main>

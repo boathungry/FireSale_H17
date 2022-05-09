@@ -21,6 +21,7 @@ def register(request):
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}!')
             return redirect(f'create_account/{user.id}')
+        messages.error(request, "Error. Account not created.")
     return render(request, 'user/register.html', {
         'form': UserCreationForm()
     })
@@ -38,7 +39,9 @@ def create_account(request, id):
             user.rating = 0
             user.auth = AuthUser.objects.get(id=id)
             user.save()
+            messages.success('Account created!')
             return redirect('login')
+        messages.error('Error. Unable to create account')
     else:
         form = AccountCreationForm()
     return render(request, 'user/create_account.html', {
