@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'sale.apps.SalesConfig',
     'user.apps.UsersConfig',
     'crispy_forms',
+    'crispy_bootstrap5',
 
 ]
 
@@ -138,7 +139,9 @@ MEDIA_URL = '/media/'
 LOGIN_URL= '/User/login'
 LOGIN_REDIRECT_URL = '/'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # Default primary key field type
