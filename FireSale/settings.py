@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'offer.apps.OffersConfig',
     'sale.apps.SalesConfig',
     'user.apps.UsersConfig',
+    'crispy_forms',
+
 ]
 
 MIDDLEWARE = [
@@ -135,6 +137,9 @@ MEDIA_URL = '/media/'
 
 LOGIN_URL= '/User/login'
 LOGIN_REDIRECT_URL = '/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

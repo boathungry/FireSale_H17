@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=255)),
                 ('bio', models.CharField(max_length=510)),
                 ('rating', models.PositiveIntegerField()),
-                ('image', models.CharField(max_length=255)),
+                ('image', models.ImageField(default="default_pic.img", upload_to='profile_pics')),
             ],
         ),
     ]

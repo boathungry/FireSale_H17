@@ -6,6 +6,7 @@ from .forms import AccountCreationForm
 from .models import User
 from catalog.models import Item
 from offer.models import Offer
+from django.contrib import messages
 
 
 def get_user(auth_id):
@@ -17,6 +18,8 @@ def register(request):
         form = UserCreationForm(data=request.POST)
         if form.is_valid():
             user = form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}!')
             return redirect(f'create_account/{user.id}')
     return render(request, 'user/register.html', {
         'form': UserCreationForm()
