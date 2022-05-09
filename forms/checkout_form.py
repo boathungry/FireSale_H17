@@ -5,6 +5,7 @@ from offer.models import Offer
 class CheckoutCreateForm(ModelForm):
     class Meta:
         model = Offer
+        exclude = ['id']
         widgets = {
             'billing name': widgets.TextInput(attrs={'class': 'form-control'}),
             'email': widgets.TextInput(attrs={'class': 'form-control'}),
@@ -14,3 +15,4 @@ class CheckoutCreateForm(ModelForm):
             'city': widgets.Select(attrs={'class': 'form-control'}),
             'zip': widgets.TextInput(attrs={'class': 'form-control'})
         }
+

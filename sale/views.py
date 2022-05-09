@@ -8,13 +8,14 @@ from sale.models import Sale
 from offer.models import Offer
 
 # Create your views here.
+
+
 @login_required
 def create_checkout(request):
     if request.method == 'POST':
         form = CheckoutCreateForm(data=request.POST)
         authuser = request.user
         user = User.objects.get(auth=authuser.id)
-        item = Item.objects.get()
         if form.is_valid():
             sale = Sale()
             sale.name = form.cleaned_data.get('billing name')
@@ -30,3 +31,9 @@ def create_checkout(request):
     return render(request, 'catalog/create_item.html', {
         'form': form
     })
+
+def view_buyout_item(request):
+    return render(request, 'sale/buyout_item.html')
+
+def view_offer_item(request):
+    return render(request, 'sale/offer_item.html')

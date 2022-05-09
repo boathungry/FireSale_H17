@@ -54,9 +54,5 @@ def create_item(request):
     })
 
 
-def view_buyout_item(request):
-    return render(request, 'catalog/buyout_item.html')
 
-def view_offer_item(request):
-    return render(request, 'catalog/offer_item.html')
 
