@@ -1,6 +1,7 @@
 from django.db import models
 from catalog.models import Item
 from user.models import User
+from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 
 
 class Sale(models.Model):
@@ -15,3 +16,13 @@ class Sale(models.Model):
 
     def __str__(self):
         return f"({self.id}) {self.itemid} sold to {self.buyerid} for {self.price}"
+
+
+class Payment(models.Model):
+    credit_card_name = models.CharField(max_length=255) 
+    credit_card_number = CardNumberField(max_length=16)
+    expiration_date = CardExpiryField(default=None)
+    cvv = SecurityCodeField(default=None)
+    address = models.CharField(max_length=255)
+    
+
