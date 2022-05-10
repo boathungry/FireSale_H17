@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from catalog.models import Category, Item
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 from offer.models import Offer
 from user.models import User
 from django.http import JsonResponse
@@ -12,16 +12,14 @@ from forms.item_form import ItemCreateForm
 
 
 def index(request):
+
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
-        items = list(Item.objects.filter(name__icontains=search_filter).values())
+        items = list(Item.objects.filter(name__icontains=search_filter).values().order_by('name'))
         return JsonResponse({'data': items})
 
     if 'category' in request.GET:
         context = {'items': Item.objects.filter(catid=request.GET['category']).order_by('name')}
-        return render(request, 'catalog/index.html', context)
-    if 'name' in request.GET:
-        context = {'items': Item.objects.filter(catid=request.GET['name']).order_by('name')}
         return render(request, 'catalog/index.html', context)
 
     items = Item.objects.all().order_by('name')
@@ -39,10 +37,11 @@ def get_item_by_id(request, id):
         'buyer': buyer
     })
 
+
 @login_required
 def create_item(request):
     if request.method == 'POST':
-        form = ItemCreateForm(data=request.POST)
+        form = ItemCreateForm(request.POST, request.FILES)
         print(request.user)
         authuser = request.user
         user = User.objects.get(auth=authuser.id)
@@ -53,14 +52,16 @@ def create_item(request):
             item.description = request.POST.get('description')
             item.buyout = request.POST.get('buyout')
             item.catid = form.cleaned_data.get('catid')
-            item.image = form.cleaned_data.get('image')
+            item.image = request.FILES.get('image')
             item.sellerid = user
             item.save()
+            messages.success(request, f'Item created!')
             return redirect('catalog-index')
-    else:
-        form = ItemCreateForm()
+        error_string = '\n'.join([' '.join(x for x in l) for l in list(form.errors.values())])
+        messages.error(request, error_string)
+
     return render(request, 'catalog/create_item.html', {
-        'form': form
+        'form': ItemCreateForm()
     })
 
 

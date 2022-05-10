@@ -27,9 +27,7 @@ urlpatterns = [
     path('', include('catalog.urls')),
     path('sale/', include('sale.urls')),
     path('offer/', include('offer.urls')),
-]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

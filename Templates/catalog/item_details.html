@@ -24,7 +24,21 @@
                 {% endif %}
             </p>
         {% endfor %}
-
+    </div>
+    <div class="container">
+        <div class="similar-items">
+            {% for offer in offers %}
+            <p>
+                {{ offer.datetime }}: {{ offer.buyerid.name }} offered ${{ offer.amount }}
+                {% if buyer == offer.buyerid %}
+                    <form action="/offer/cancel_offer/{{ offer.id }}/{{ item.id }}" method="post">
+                    {% csrf_token %}
+                    <input id="itempage-cancel-offer-btn" type="submit" class="btn btn-secondary" value="Cancel offer">
+                    </form>
+                {% endif %}
+            </p>
+            {% endfor %}
+        </div>
     </div>
     {% load static %}
     <!-- Pass the item id and csrf token to the javascript file -->
