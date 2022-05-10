@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from catalog.models import Category, Item
 from django.contrib.auth.decorators import login_required
+
+from offer.models import Offer
 from user.models import User
 from django.http import JsonResponse
 
@@ -25,8 +27,13 @@ def index(request):
 
 
 def get_item_by_id(request, id):
+    offers = Offer.objects.filter(itemid=id)
+    authuser = request.user
+    buyer = User.objects.get(auth=authuser.id)
     return render(request, 'catalog/item_details.html', {
-        'item': get_object_or_404(Item, pk=id)
+        'item': get_object_or_404(Item, pk=id),
+        'offers': offers,
+        'buyer': buyer
     })
 
 @login_required

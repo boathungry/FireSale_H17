@@ -28,5 +28,15 @@ def make_offer(request, id):
 
 def cancel_offer(request, id):
     if request.method == 'POST':
-        Offer.objects.get(id=id).delete()
+        delete_offer(id)
         return redirect('my_offers')
+
+
+def cancel_offer_itempage(request, id, itemid):
+    if request.method == 'POST':
+        delete_offer(id)
+        return redirect('item_details', itemid)
+
+
+def delete_offer(offerid):
+    Offer.objects.get(id=offerid).delete()
