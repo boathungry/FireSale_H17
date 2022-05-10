@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <h2>Catalog</h2>
-    <div class="items">
+    <div class="catalog-items">
         {% for item in items %}
             {% include 'catalog/single_item.html' with item=item %}
         {% endfor %}
