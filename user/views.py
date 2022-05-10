@@ -19,9 +19,10 @@ def register(request):
         if form.is_valid():
             user = form.save()
             return redirect(f'create_account/{user.id}')
-        messages.error(request, 'Error. Account not created')
+        error_string = ' '.join([' '.join(x for x in l) for l in list(form.errors.values())])
+        messages.error(request, error_string)
     return render(request, 'user/register.html', {
-        'form': form
+        'form': UserCreationForm()
     })
 
 
