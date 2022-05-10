@@ -1,13 +1,9 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<<<<<<< Updated upstream
     <h2>Add info for complete registration</h2>
-    <form class="form form-horizontal" method="post">
-=======
     <h1>Create account</h1>
     <form class="form" enctype="multipart/form-data" method="post">
->>>>>>> Stashed changes
         {% csrf_token %}
         {{ form|crispy }}
     <input type="submit" class="btn btn-secondary" value="Confirm" />

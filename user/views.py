@@ -20,6 +20,8 @@ def register(request):
             user = form.save()
             return redirect(f'create_account/{user.id}')
         messages.error(request, 'Error. Account not created')
+    else:
+        form = UserCreationForm()
     return render(request, 'user/register.html', {
         'form': form
     })
