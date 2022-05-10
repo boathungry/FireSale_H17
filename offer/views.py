@@ -40,3 +40,19 @@ def cancel_offer_itempage(request, id, itemid):
 
 def delete_offer(offerid):
     Offer.objects.get(id=offerid).delete()
+
+
+def get_offers_for_item(request, itemid):
+    item = Item.objects.get(id=itemid)
+    offers = Offer.objects.filter(itemid=item)
+    return render(request, 'Offer/offer_list.html', {'offers': offers, 'item': item})
+
+
+def accept_offer(request, offerid):
+    offer = Offer.objects.get(id=offerid)
+    offer.accepted = True
+    offer.save()
+    item = offer.itemid
+    item.offer_accepted = True
+    item.save()
+    return render(request, 'Offer/offer_accepted.html')

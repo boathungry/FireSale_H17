@@ -3,9 +3,14 @@
     {% if user_items != null %}
         {% for item in user_items %}
             {% include 'catalog/single_item.html' with item=item %}
+            <form action="../offer/item_offers/{{ item.id }}" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-secondary" value="View offers" />
+            </form>
         {% endfor %}
     {% else %}
         <h4>No items</h4>
     {% endif %}
+    <p></p>
     <a class="btn btn-primary" href="/catalog/create_item">Create new item</a>
 {% endblock %}

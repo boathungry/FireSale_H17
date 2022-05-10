@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <h4>Offers on {{ item.name }}:</h4>
+    <div class="offers-list">
+        {% for offer in offers %}
+            <div class="single-offer">
+            <p>{{ offer.datetime }}: ${{ offer.amount }} offered by {{ offer.buyerid.name }}</p>
+            </div>
+            <form action="../accept_offer/{{ offer.id }}" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-secondary" value="Accept offer" />
+            </form>
+        {% endfor %}
+    </div>
+{% endblock %}

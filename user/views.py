@@ -61,7 +61,8 @@ def view_my_items(request):
     user = get_user(request.user.id)
     try:
         user_items = Item.objects.filter(sellerid=user.id)
-        return render(request, 'user/my_items.html', {'user_items': user_items})
+        context = {'user_items': user_items}
+        return render(request, 'user/my_items.html', context)
     except ObjectDoesNotExist:
         return render(request, 'user/my_items.html')
 
