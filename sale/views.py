@@ -41,3 +41,6 @@ def view_buyout_item(request):
 
 def view_billing(request):
     return render(request, 'sale/billing_checkout.html')
+
+def view_checkout_steps(request):
+    return render(request, 'sale/checkout_steps.html')
