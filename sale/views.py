@@ -5,8 +5,6 @@ from catalog.models import Item
 from user.models import User
 from forms.checkout_form import CheckoutCreateForm
 from sale.models import Sale
-from offer.models import Offer
-
 # Create your views here.
 
 
@@ -19,13 +17,14 @@ def create_checkout(request, id):
         item = Item.objects.get(id=id)
         if form.is_valid():
             sale = Sale()
-            sale.name = form.cleaned_data.get('billing name')
+            sale.name = form.cleaned_data.get('billing_name')
             sale.buyerid = user
             sale.sellerid = item.sellerid
             sale.itemid = item
             sale.price = item.buyout
             sale.shipping_address = form.cleaned_data.get('address')
             sale.shipped = None
+            sale.country = form.cleaned_data.get('country')
             return redirect('catalog-index')
     else:
         form = CheckoutCreateForm()
