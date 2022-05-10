@@ -19,11 +19,10 @@ def register(request):
         if form.is_valid():
             user = form.save()
             return redirect(f'create_account/{user.id}')
-        messages.error(request, 'Error. Account not created')
-    else:
-        form = UserCreationForm()
+        error_string = '\n'.join([' '.join(x for x in l) for l in list(form.errors.values())])
+        messages.error(request, error_string)
     return render(request, 'user/register.html', {
-        'form': form
+        'form': UserCreationForm()
     })
 
 
@@ -42,7 +41,8 @@ def create_account(request, id):
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}!')
             return redirect('login')
-        messages.error('Error. Unable to create account.')
+        error_string = '\n'.join([' '.join(x for x in l) for l in list(form.errors.values())])
+        messages.error(request, error_string)
     else:
         form = AccountCreationForm()
     return render(request, 'user/create_account.html', {
@@ -88,7 +88,10 @@ def view_account_settings(request):
             user.bio = request.POST.get('bio')
             user.image = request.POST.get('image')
             user.save()
+            messages.success(request, 'Account successfully changed.')
             return redirect('account')
+        error_string = '\n'.join([' '.join(x for x in l) for l in list(form.errors.values())])
+        messages.error(request, error_string)
     return render(request, 'user/account_settings.html', {
         'form': AccountCreationForm(initial={'name': user.name, 'email': user.email, 'bio': user.bio, 'image': user.image})
     })

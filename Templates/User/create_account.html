@@ -2,8 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <h2>Add info for complete registration</h2>
-    <h1>Create account</h1>
-    <form class="form" enctype="multipart/form-data" method="post">
+    <form class="form form-horizontal" method="post">
         {% csrf_token %}
         {{ form|crispy }}
     <input type="submit" class="btn btn-secondary" value="Confirm" />
