@@ -1,4 +1,3 @@
-import re
 from django import forms
 from django_countries.data import COUNTRIES
 

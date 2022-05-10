@@ -7,7 +7,8 @@
 		method="post"
 	>
 		{% csrf_token %} {{ form|crispy }}
-		<input type="submit" value="Create" class="btn-secondary" />
+		<input type="submit" value="Submit" class="btn-secondary" />
 	</form>
+	<a class="btn btn-secondary" href="/sale/billing_checkout">Next</a>
 </main>
 {% endblock %}

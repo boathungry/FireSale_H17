@@ -20,6 +20,9 @@ def index(request):
     if 'category' in request.GET:
         context = {'items': Item.objects.filter(catid=request.GET['category']).order_by('name')}
         return render(request, 'catalog/index.html', context)
+    if 'name' in request.GET:
+        context = {'items': Item.objects.filter(catid=request.GET['name']).order_by('name')}
+        return render(request, 'catalog/index.html', context)
 
     items = Item.objects.all().order_by('name')
     context = {'items': items}
