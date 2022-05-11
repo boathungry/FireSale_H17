@@ -5,6 +5,7 @@ from django.contrib import messages
 from offer.models import Offer
 from user.models import User
 from django.http import JsonResponse
+from django.db.models import Max
 
 # Create your views here.
 from forms.item_form import ItemCreateForm
@@ -38,12 +39,16 @@ def index(request):
 
 def get_item_by_id(request, id):
     offers = Offer.objects.filter(itemid=id)
+    highest_offer_dict = offers.aggregate(Max('amount'))
+    highest_offer_amount = highest_offer_dict['amount__max']
+    highest_offer = Offer.objects.filter(itemid=id, amount=highest_offer_amount).first()
     authuser = request.user
     buyer = User.objects.get(auth=authuser.id)
     return render(request, 'catalog/item_details.html', {
         'item': get_object_or_404(Item, pk=id),
         'offers': offers,
-        'buyer': buyer
+        'buyer': buyer,
+        'highest_offer': highest_offer
     })
 
 

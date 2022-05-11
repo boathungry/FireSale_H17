@@ -4,6 +4,7 @@
         <p>Item Name: {{ item.name }}</p>
         <p>Description: {{ item.description }}</p>
         <p>Buyout Price: ${{ item.buyout|floatformat:2 }}</p>
+        <p>Current highest offer: ${{ highest_offer.amount|floatformat:2 }} offered by {{ highest_offer.buyerid.name }}</p>
     </div>
     {% if item.sellerid != buyer %}
         <div class="buyout-offer-btn">
