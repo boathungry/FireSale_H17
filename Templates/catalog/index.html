@@ -9,7 +9,9 @@
     </div>
     <div class="catalog-items">
         {% for item in items %}
-            {% include 'catalog/single_item.html' with item=item %}
+            {% if item.offer_accepted == False %}
+                {% include 'catalog/single_item.html' with item=item %}
+            {% endif %}
         {% endfor %}
     </div>
 

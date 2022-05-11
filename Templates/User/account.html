@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+    {% if accepted_offers != None %}
+        {% for offer in accepted_offers %}
+            {% include 'Offer/accepted_offer_notification.html' with offer=offer %}
+        {% endfor %}
+    {% endif %}
     <div id="account-info">
         <h2>Account</h2>
-        <img src="{{ MEDIA_URL }}{{ user_image.url }}" alt="{{ image }}">
+        <img src="{{ MEDIA_URL }}{{ user_image.url }}" alt="{{ image }}" width="100px" height="100px">
         <h4>{{ user_name }}</h4>
         <p>{{ user_bio }}</p>
         <a class="btn btn-secondary" href="/User/account_settings">Account Settings</a>

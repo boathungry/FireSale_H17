@@ -6,6 +6,14 @@
                 {% if item.id == offer.itemid.id %}
                     {% include 'catalog/single_item.html' with item=item %}
                     <h4>You offered: {{ offer.amount }}$</h4>
+                    {% if offer.accepted == False and item.offer_accepted == False %}
+                        <h5>Status: Bidding ongoing</h5>
+                    {% elif offer.accepted == False and item.offer_accepted == True %}
+                        <h5>Status: Another user's offer has been accepted, pending checkout</h5>
+                    {% elif offer.accepted == True %}
+                        <h5>Status: Your offer has been accepted!</h5>
+                        <a class="btn btn-primary" href="../sale/billing_checkout.html">Check out</a>
+                    {% endif %}
                     <form action="/offer/cancel_offer/{{ offer.id }}" method="post">
                         {% csrf_token %}
                     <input type="submit" class="btn btn-secondary" value="Cancel">
