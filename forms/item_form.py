@@ -1,4 +1,3 @@
-from nis import cat
 from django.forms import ModelForm, widgets
 from django import forms
 from catalog.models import Item
