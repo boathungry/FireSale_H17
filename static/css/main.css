@@ -39,7 +39,8 @@ p { color: #111;
     line-height: 1rem;
     margin: 0 0 24px;
     text-align: justify;
-    text-justify: inter-word; }
+    text-justify: inter-word;
+}
 
 .single_item:link {
     color: var(--link-color);

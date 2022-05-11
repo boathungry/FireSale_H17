@@ -72,3 +72,8 @@ def create_item(request):
     return render(request, 'catalog/create_item.html', {
         'form': ItemCreateForm()
     })
+
+
+def delete_item(request, itemid):
+    Item.objects.get(id=itemid).delete()
+    return redirect('my_items')
