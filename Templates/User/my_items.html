@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+    <h3>My items</h3>
     {% if user_items != null %}
         {% for item in user_items %}
             {% include 'catalog/single_item.html' with item=item %}
             <form action="../offer/item_offers/{{ item.id }}" method="post">
             {% csrf_token %}
-            <input type="submit" class="btn btn-secondary" value="View offers" />
+            <input type="submit" class="btn btn-primary" value="View offers" />
             </form>
+            <a class="btn btn-secondary" href="../catalog/delete_item/{{ item.id }}">Delete</a>
         {% endfor %}
     {% else %}
         <h4>No items</h4>

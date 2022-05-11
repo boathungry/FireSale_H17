@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+    <h3>My offers</h3>
     {% if user_offers != null %}
         {% for offer in user_offers %}
             {% for item in item_list %}
