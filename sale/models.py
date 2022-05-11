@@ -11,6 +11,7 @@ class Sale(models.Model):
     price = models.PositiveIntegerField()
     shipped = models.DateField(blank=True)
     shipping_address = models.CharField(max_length=255)
+    postal_code = models.CharField(max_length=255)
     country = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
 

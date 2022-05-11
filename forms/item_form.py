@@ -1,18 +1,28 @@
+from nis import cat
 from django.forms import ModelForm, widgets
 from django import forms
 from catalog.models import Item
 from catalog.models import Category
 
 
-class ItemCreateForm(forms.Form):
-    name = forms.CharField(label='Item name', required=True, max_length=255)
-    description = forms.CharField(label='Description', required=False, max_length=255)
-    condition = forms.CharField(label='Condition', max_length=255)
-    buyout = forms.FloatField(label='Buyout Price')
-    catid = forms.ChoiceField(label='Category')
-    image = forms.ImageField(label='Photo of item')
 
-
-
+class ItemCreateForm(ModelForm):
     class Meta:
         model = Item
+        exclude = ['id', 'sellerid']
+        exclude = ['sellerid']
+        widgets = {
+            'name': widgets.TextInput(attrs={'class': 'form-control', 'label': 'Item name'}),
+            'condition': widgets.TextInput(attrs={'class': 'form-control'}),
+            'description': widgets.TextInput(attrs={'class': 'form-control'}),
+            'buyout': widgets.TextInput(attrs={'class': 'form-control'}),
+            'image': widgets.TextInput(attrs={'class': 'form-control'})
+        }
+        labels = {
+            "name": "Item name",
+            "description": "Description",
+            "condition": "Condition",
+            "buyout": "Buyout Price",
+            "image": "Photo of Item",
+            "catid": "Category",
+        }
