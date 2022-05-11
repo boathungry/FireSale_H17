@@ -10,7 +10,7 @@
         <input type="number" id="make-offer-input" min="1" />
         <button type="button" id="make-offer-btn" class="btn btn-secondary">Make an offer</button>
     </div>
-    <img class="item-img" src="{{ item.image }}" />
+    <img class="item-img" src="{{ MEDIA_URL }}{{ item.image.url }}" alt="{{ item.name }}" />
     <div class="current-offers">
         <h4>Current offers:</h4>
         {% for offer in offers %}

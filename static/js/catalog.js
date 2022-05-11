@@ -14,7 +14,7 @@ $(document).ready(function () {
                 let newHtml = response.data.map(d => {
                     return `<div class="well item">
                                 <a class="single_item" href="/catalog/${d.id}">
-                                    <img class="item-img" src="${d.image}" alt="${d.name}"/>
+                                    <img class="item-img" src="/media/${ d.image.url }" alt="${ d.name }" />
                                     <h4>${d.name}</h4>
                                     <div>${d.description}</div>
                                 </a>
