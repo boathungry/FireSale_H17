@@ -22,6 +22,6 @@ class ItemCreateForm(ModelForm):
             "description": "Description",
             "condition": "Condition",
             "buyout": "Buyout Price",
-            "image": "Uploaf photo of Item",
+            "image": "Upload photo of Item",
             "catid": "Category",
         }
