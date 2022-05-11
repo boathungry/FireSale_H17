@@ -1,12 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <h2>Catalog</h2>
-    <div class="btn-group">
-        <label>Sort by:</label>
-        <a href="#" class="btn btn-outline-secondary active" aria-current="page">Name</a>
-        <a href="" class="btn btn-outline-secondary">Price(Low-High)</a>
-        <a href="#" class="btn btn-outline-secondary">Price(High-Low</a>
-    </div>
+    {% include 'catalog/order_by.html' %}
     <div class="catalog-items">
         {% for item in items %}
             {% if item.offer_accepted == False %}

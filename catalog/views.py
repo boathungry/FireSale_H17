@@ -6,23 +6,32 @@ from offer.models import Offer
 from user.models import User
 from django.http import JsonResponse
 
-
 # Create your views here.
 from forms.item_form import ItemCreateForm
 
 
 def index(request):
+    order_by_values = {
+        "high": "-buyout",
+        "low": "buyout",
+        "name": "name",
+        "new": "-id",
+    }
+
+    order_option = request.GET.get("order-by", "name")
 
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
-        items = list(Item.objects.filter(name__icontains=search_filter).values().order_by('name'))
+        order_option = request.GET.get("order-by", "name")
+        items = list(Item.objects.filter(name__icontains=search_filter).values().order_by(order_by_values[order_option]))
         return JsonResponse({'data': items})
 
     if 'category' in request.GET:
-        context = {'items': Item.objects.filter(catid=request.GET['category']).order_by('name')}
+        order_option = request.GET.get("order-by", "name")
+        context = {'items': Item.objects.filter(catid=request.GET['category']).order_by(order_by_values[order_option])}
         return render(request, 'catalog/index.html', context)
 
-    items = Item.objects.all().order_by('name')
+    items = Item.objects.all().order_by(order_by_values[order_option])
     context = {'items': items}
     return render(request, 'catalog/index.html', context)
 
@@ -63,7 +72,3 @@ def create_item(request):
     return render(request, 'catalog/create_item.html', {
         'form': ItemCreateForm()
     })
-
-
-
-
