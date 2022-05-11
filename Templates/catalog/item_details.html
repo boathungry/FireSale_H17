@@ -3,7 +3,7 @@
     <div class="ItemInfo">
         <p>Item Name: {{ item.name }}</p>
         <p>Description: {{ item.description }}</p>
-        <p>Buyout Price: ${{ item.buyout }}</p>
+        <p>Buyout Price: ${{ item.buyout|floatformat:2 }}</p>
     </div>
     <div class="buyout-offer-btn">
         <a class="btn btn-secondary" href="/sale/buyout_item/{{ item.id }}">Buyout</a>
@@ -15,7 +15,7 @@
         <h4>Current offers:</h4>
         {% for offer in offers %}
             <p>
-                {{ offer.datetime }}: {{ offer.buyerid.name }} offered ${{ offer.amount }}
+                {{ offer.datetime }}: {{ offer.buyerid.name }} offered ${{ offer.amount|floatformat:2 }}
                 {% if buyer == offer.buyerid %}
                     <form action="/offer/cancel_offer/{{ offer.id }}/{{ item.id }}" method="post">
                     {% csrf_token %}
@@ -29,7 +29,7 @@
         <div class="similar-items">
             {% for offer in offers %}
             <p>
-                {{ offer.datetime }}: {{ offer.buyerid.name }} offered ${{ offer.amount }}
+                {{ offer.datetime }}: {{ offer.buyerid.name }} offered ${{ offer.amount|floatformat:2 }}
                 {% if buyer == offer.buyerid %}
                     <form action="/offer/cancel_offer/{{ offer.id }}/{{ item.id }}" method="post">
                     {% csrf_token %}

@@ -14,7 +14,7 @@ class ItemCreateForm(ModelForm):
             'name': widgets.TextInput(attrs={'class': 'form-control', 'label': 'Item name'}),
             'condition': widgets.TextInput(attrs={'class': 'form-control'}),
             'description': widgets.TextInput(attrs={'class': 'form-control'}),
-            'buyout': widgets.TextInput(attrs={'class': 'form-control'}),
+            'buyout': widgets.NumberInput(attrs={'class': 'form-control'}),
             'image': widgets.ClearableFileInput(attrs={'class': 'form-control'})
         }
         labels = {
@@ -22,6 +22,6 @@ class ItemCreateForm(ModelForm):
             "description": "Description",
             "condition": "Condition",
             "buyout": "Buyout Price",
-            "image": "Photo of Item",
+            "image": "Uploaf photo of Item",
             "catid": "Category",
         }

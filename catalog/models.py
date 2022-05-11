@@ -1,5 +1,6 @@
 from django.db import models
 from user.models import User
+from django.core.validators import MinValueValidator
 
 
 class Category(models.Model):
@@ -12,7 +13,7 @@ class Category(models.Model):
 class Item(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=510, blank=True)
-    buyout = models.PositiveIntegerField()
+    buyout = models.FloatField(validators=[MinValueValidator(0.0)])
     catid = models.ForeignKey(Category, on_delete=models.CASCADE)
     sellerid = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField()

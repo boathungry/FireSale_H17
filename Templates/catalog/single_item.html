@@ -4,6 +4,6 @@
         <img class="item-img" src="{{ MEDIA_URL }}{{ item.image.url }}" alt="{{ item.name }}" />
         <h4>{{ item.name }}</h4>
         <div>{{ item.description }}</div>
-        <div>Buyout price: ${{ item.buyout }}</div>
+        <div>Buyout price: ${{ item.buyout|floatformat:2  }}</div>
     </a>
 </div>

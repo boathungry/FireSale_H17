@@ -23,10 +23,12 @@ $(document).ready(function () {
                 });
                 if (newHtml == '') {
 
-                    $('.items').html("<h3>Sorry! No results found. </h3>")
+                    $('.content').html("<h3>Sorry! No results found. </h3>")
                 }
                 else {
-                    $('.items').html(newHtml.join(''));
+
+                    $('.content').html(newHtml.join(''));
+
                 }
                 $('#search-box').val('');
             },

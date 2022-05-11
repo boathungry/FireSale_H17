@@ -2,13 +2,14 @@ from django.db import models
 from catalog.models import Item
 from user.models import User
 from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Sale(models.Model):
     itemid = models.ForeignKey(Item, on_delete=models.CASCADE)
     sellerid = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sellerid')
     buyerid = models.ForeignKey(User, on_delete=models.CASCADE, related_name='buyerid')
-    price = models.PositiveIntegerField()
+    price = models.FloatField(validators=[MinValueValidator(0.0)])
     shipped = models.DateField(blank=True)
     shipping_address = models.CharField(max_length=255)
     postal_code = models.CharField(max_length=255)

@@ -4,7 +4,7 @@
     <div class="offers-list">
         {% for offer in offers %}
             <div class="single-offer">
-            <p>{{ offer.datetime }}: ${{ offer.amount }} offered by {{ offer.buyerid.name }}</p>
+            <p>{{ offer.datetime }}: ${{ offer.amount|floatformat:2 }} offered by {{ offer.buyerid.name }}</p>
             </div>
             <form action="../accept_offer/{{ offer.id }}" method="post">
             {% csrf_token %}
