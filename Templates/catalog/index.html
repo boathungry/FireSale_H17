@@ -2,7 +2,7 @@
 {% block content %}
     <h2>Catalog</h2>
     {% include 'catalog/order_by.html' %}
-    <div class="catalog-items">
+    <div class="catalog-items d-flex align-content-stretch flex-wrap">
         {% for item in items %}
             {% if item.offer_accepted == False %}
                 {% include 'catalog/single_item.html' with item=item %}

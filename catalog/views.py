@@ -18,8 +18,7 @@ def index(request):
         "name": "name",
         "new": "-id",
     }
-
-    order_option = request.GET.get("order-by", "name")
+    order_option = request.GET.get("order-by", 'name')
 
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']

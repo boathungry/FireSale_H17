@@ -17,7 +17,6 @@ $(document).ready(function () {
                                 <a class="single_item" href="/catalog/${d.id}">
                                     <img class="item-img" src="/media/${ d.image }" alt="${ d.name }" />
                                     <h4>${d.name}</h4>
-                                    <div>${d.description}</div>
                                 </a>
                             </div>`
                 });
@@ -38,3 +37,11 @@ $(document).ready(function () {
         })
     });
 });
+
+function reloadPage()
+{
+location.reload();
+}
+
+
+

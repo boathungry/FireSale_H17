@@ -11,7 +11,7 @@ class Category(models.Model):
 
 
 class Item(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=20)
     description = models.CharField(max_length=510, blank=True)
     buyout = models.FloatField(validators=[MinValueValidator(0.0)])
     catid = models.ForeignKey(Category, on_delete=models.CASCADE)

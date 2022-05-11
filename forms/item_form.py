@@ -1,3 +1,4 @@
+
 from django.forms import ModelForm, widgets
 from django import forms
 from catalog.models import Item
@@ -17,7 +18,7 @@ class ItemCreateForm(ModelForm):
             'image': widgets.ClearableFileInput(attrs={'class': 'form-control'})
         }
         labels = {
-            "name": "Item name",
+            "name": "Item name (max. 20 characters)",
             "description": "Description",
             "condition": "Condition",
             "buyout": "Buyout Price",

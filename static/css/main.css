@@ -11,12 +11,17 @@ main > .container {
   padding: 60px 15px 35px;
 }
 
+.single_item {
+    margin: 20px;
+}
+
 body {
     background-image: linear-gradient( #E7BF9B, #FFFFFF);
     background-attachment: fixed;
     min-height: 75rem;
     font-family: Tahoma, sans-serif;
 }
+
 h1 { color: #111;
     font-family: Tahoma, sans-serif;
     font-size: 15rem;
@@ -32,6 +37,13 @@ h2 { color: #111;
     line-height: 32px;
     margin: 0 0 72px;
     text-align: center; }
+
+h3 { color: #111;
+    font-family: Tahoma, sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+
+}
 
 p { color: #111;
     font-family: Tahoma, sans-serif;
