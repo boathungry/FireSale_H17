@@ -7,7 +7,7 @@
             {% for item in item_list %}
                 {% if item.id == offer.itemid.id %}
                     {% include 'catalog/single_item.html' with item=item %}
-                    <div class="flex-shrink-1">
+                    <div class="flex-shrink-1 mt-5">
                     <h4>You offered: {{ offer.amount|floatformat:2 }}$</h4>
                     {% if offer.accepted == False and item.offer_accepted == False %}
                         <h5>Status: Bidding ongoing</h5>
