@@ -2,6 +2,7 @@
 {% block content %}
     <div class="ItemInfo">
         <p>Item Name: {{ item.name }}</p>
+        <p>Sold by <a href="../../User/{{ item.sellerid.id }}">{{ item.sellerid.name }}</a></p>
         <p>Description: {{ item.description }}</p>
         <p>Buyout Price: ${{ item.buyout|floatformat:2 }}</p>
         {% if offers %}

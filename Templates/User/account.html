@@ -6,14 +6,27 @@
         {% endfor %}
     {% endif %}
     <div id="account-info">
-        <h2>Account</h2>
-        <img src="{{ MEDIA_URL }}{{ user_image.url }}" alt="{{ image }}" width="100px" height="100px">
-        <h4>{{ user_name }}</h4>
-        <p>{{ user_bio }}</p>
-        <a class="btn btn-secondary" href="/User/account_settings">Account Settings</a>
+        <h2>{{ user.name }}'s profile</h2>
+        <img src="{{ MEDIA_URL }}{{ user.image.url }}" alt="{{ image }}" width="100px" height="100px">
+        <h4>{{ user.name }}</h4>
+        <p>Rating: {{ user.rating }}</p>
+        <p>{{ user.bio }}</p>
+        {% if not other_user %}
+            <a class="btn btn-secondary" href="/User/account_settings">Account Settings</a>
+            {% else %}
+            <button type="button" class="btn btn-secondary" id="rating-btn">Rate user</button>
+        {% endif %}
     </div>
-    <div id="my-items-offers">
-        <a class="btn btn-secondary" href="/User/my_items">My Items</a>
-        <a class="btn btn-secondary" href="/User/my_offers">My Offers</a>
-    </div>
+    {% if not other_user %}
+        <div id="my-items-offers">
+            <a class="btn btn-secondary" href="/User/my_items">My Items</a>
+            <a class="btn btn-secondary" href="/User/my_offers">My Offers</a>
+        </div>
+        {% else %}
+        <a class="btn btn-primary" href="/User/{{ user.id }}/catalog">View {{ user.name }}'s catalog</a>
+    {% endif %}
+
+    {% if other_user %}
+        <script src="../../static/js/rating.js"></script>
+    {% endif %}
 {% endblock %}
