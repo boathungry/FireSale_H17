@@ -37,8 +37,8 @@
     <div class="container">
         <div class="similar-items">
         <h4>Similar items:</h4>
-            {% for simitem in items%}
-                {% include 'catalog/single_item.html' with catid=catid %}
+            {% for simitem in similar_items %}
+                {% include 'catalog/single_item.html' with item=simitem %}
             {% empty %}
             <p>Sorry, no similar items.</p>
             {% endfor %}
