@@ -14,5 +14,6 @@ urlpatterns = [
     path('my_offers', views.view_my_offers, name='my_offers'),
     path('account_settings', views.view_account_settings, name='account_settings'),
     path('<int:userid>', views.view_other_account, name='other_account'),
-    path('<int:userid>/catalog', views.view_user_catalog, name='user_catalog')
+    path('<int:userid>/catalog', views.view_user_catalog, name='user_catalog'),
+    path('<int:userid>/rate', views.rate_user, name='rate_user')
 ]

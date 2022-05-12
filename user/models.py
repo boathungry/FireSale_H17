@@ -12,3 +12,13 @@ class User(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.id})"
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    reviewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviewer")
+    rating = models.PositiveIntegerField()
+    review = models.CharField(max_length=999)
+
+    def __str__(self):
+        return f"{self.rating} stars from {self.reviewer}"

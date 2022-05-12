@@ -27,6 +27,8 @@
     {% endif %}
 
     {% if other_user %}
+        <script>let userid = {{ user.id }}</script>
+        <script>let csrf = "{{ csrf_token }}"</script>
         <script src="../../static/js/rating.js"></script>
     {% endif %}
 {% endblock %}

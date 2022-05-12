@@ -95,18 +95,27 @@ function stars_freeze() {
         }
     }
     //Add a button to confirm the rating, if it doesn't already exist
-    if (document.getElementById("rate-btn") === null) {
-        let rate_btn = document.createElement("a");
-        rate_btn.id = "rate-btn";
+    if (document.getElementById("confirm-rating-btn") === null) {
+        let rate_btn = document.createElement("button");
+        rate_btn.type = "button";
+        rate_btn.id = "confirm-rating-btn";
         rate_btn.className = "btn btn-primary";
-        rate_btn.href = "#";
         rate_btn.innerText = "Confirm rating";
+        rate_btn.addEventListener("click", confirm_rating)
         let star_div = document.getElementById("star-div");
         star_div.appendChild(rate_btn);
     }
 }
 
-function restore_event_listeners() {
-    this.addEventListener("mouseover", stars_darken);
-    this.addEventListener("mouseleave", stars_lighten);
+function confirm_rating() {
+    let request = new XMLHttpRequest(); //create a http request
+    request.open("POST", '../../User/' + userid + '/rate', true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.setRequestHeader('x-CSRFToken', csrf); //send the csrf token
+    request.send(JSON.stringify({'rating': rating, 'review': "REVIEW PLACEHOLDER"})); //send the offer amount with the request
+    request.addEventListener("loadend", refresh_page)
+}
+
+function refresh_page() {
+    window.location.reload()
 }

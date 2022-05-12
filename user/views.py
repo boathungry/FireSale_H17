@@ -1,9 +1,12 @@
+import json
+from django.db.models import Avg
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User as AuthUser
 from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import AccountCreationForm
 from .models import User
+from .models import Review
 from catalog.models import Item
 from offer.models import Offer
 from django.contrib import messages
@@ -122,3 +125,25 @@ def view_account_settings(request):
     })
 
 
+def get_average_rating(userid):
+    user = User.objects.get(id=userid)
+    reviews = Review.objects.filter(user=user)
+    review_avg = reviews.aggregate(Avg('rating'))
+    avg_rating = review_avg['rating__avg']
+    return avg_rating
+
+
+def rate_user(request, userid):
+    if request.method == 'POST':
+        user = User.objects.get(id=userid)
+        new_review = Review()
+        new_review.reviewer = get_user(request.user.id)
+        new_review.user = user
+        request_data = json.loads(request.body)
+        new_review.rating = request_data['rating']
+        new_review.review = request_data['review']
+        new_review.save()
+        new_rating = get_average_rating(userid)
+        user.rating = new_rating
+        user.save()
+        return redirect(f'../{userid}')
