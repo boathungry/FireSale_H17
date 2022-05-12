@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from catalog.models import Item
 from user.models import User
+from sale.models import Sale
 from forms.checkout_form import CheckoutCreateForm, BillingCreateForm
 from django.contrib import messages
 # Create your views here.
@@ -34,7 +35,8 @@ def create_checkout(request, id):
             form.fields['country'].initial = request.session['country']
             form.fields['city'].initial = request.session['city']
     return render(request, 'sale/buyout_item.html', {
-        'form': form
+        'form': form,
+        'item': Item.objects.get(pk=id)
     })
 
 @login_required
@@ -60,16 +62,29 @@ def create_billing(request, id):
             form.fields['expiration_date'].initial = request.session['expiration_date']
             form.fields['cvv'].initial = request.session['cvv']
     return render(request, 'sale/billing_checkout.html', {
-        'form': form
+        'form': form,
+        'item': Item.objects.get(pk=id)
     })
 
 
-def view_buyout_item(request):
-    return render(request, 'sale/buyout_item.html')
 
 def view_billing(request, id):
     return render(request, 'sale/billing_checkout.html')
 
-def view_checkout_overview(request):
-    context = {'session': request.session}
+def view_checkout_overview(request, id):
+    if request.method == 'GET':
+        context = {
+            'item': Item.objects.get(pk=id),
+            'billing_name': request.session["billing_name"],
+            'email': request.session["email"],
+            'shipping_address': request.session["shipping_address"],
+            'postal_code': request.session["postal_code"],
+            'country': request.session["country"],
+            'city': request.session["city"],}
     return render(request, 'sale/checkout_overview.html', context)
+
+def checkout_final(request, id):
+    s = Sale()
+    s.city = request.session['city']
+    s.save()
+    return redirect("catalog-index")

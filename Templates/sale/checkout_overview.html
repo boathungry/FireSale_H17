@@ -1,9 +1,29 @@
-{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %} 
+{% include 'sale/checkout_navbar.html' with overview=True %}
 <main class="text-center form-create-item">
-    <div class="CheckoutOverview">
-        {% if session %} 
-        Billing name: {{ session.['billing_name'] }}
-        {% endif %}
-    </div>
+	<h4 class="overview-header">Checkout Overview</h4>
+	<div class="BuyerOverview">
+		<p>Name: {{ billing_name }}</p>
+		<p>Email: {{ email }}</p>
+		<p>Shipping Address: {{ shipping_address }}</p>
+		<p>Country: {{ country }}</p>
+		<p>City: {{ city }}</p>
+		<p>Zip: {{ postal_code }}</p>
+	</div>
+	<h4 class="overview-header">Item Overview</h4>
+	<div class="ItemOverview">
+		<p>Item Name: {{ item.name }}</p>
+		<p>Description: {{ item.description }}</p>
+		<p>Buyout Price: ${{ item.buyout|floatformat:2 }}</p>
+	</div>
+	<a class="btn btn-secondary" href="{% url 'buyout_item' id=item.id %}"
+		>Shipping Info</a
+	>
+	<a class="btn btn-secondary" href="{% url 'billing_checkout' id=item.id %}"
+		>Payment Info</a
+	>
+	<a class="btn btn-secondary" href="{% url 'checkout_overview' id=item.id %}"
+		>Payment Overview</a
+	>
 </main>
 {% endblock %}

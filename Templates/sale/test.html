@@ -1,0 +1,16 @@
+<div id="payment-navbar">
+	<span {% if card_info %} data-current {% endif %}
+		>{% if overview or confirmation %}<a
+			href="{% url 'payment_index' id=payment.apartment.id %}"
+			>Kortaupplýsingar</a
+		>{% else %}Kortaupplýsingar{% endif %}</span
+	>
+	<i class="fa fa-arrow-right"></i>
+	<span {% if overview %} data-current {% endif %}
+		>{% if confirmation %}<a href="{% url 'payment_overview' id=payment.id %}"
+			>Yfirferð á kaupum</a
+		>{% else %}Yfirferð á kaupum{% endif %}</span
+	>
+	<i class="fas fa-arrow-right"></i>
+	<span {% if confirmation %} data-current {% endif %}>Staðfesting</span>
+</div>
