@@ -2,12 +2,13 @@
 <main class="text-center form-create-item">
 	<form
 		class="form"
-		enctype="multipart/form-data"
 		action="{% url 'billing_checkout' %}"
 		method="post"
 	>
 		{% csrf_token %} {{ form|crispy }}
 		<input type="submit" value="Submit" class="btn-secondary" />
 	</form>
+	
+	</div>
 </main>
 {% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
+<main class="text-center form-create-item">
+    <div class="CheckoutOverview">
+        {% if session %} 
+        Billing name: {{ session.['billing_name'] }}
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

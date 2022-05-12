@@ -12,5 +12,7 @@ urlpatterns = [
     path('account', views.view_account, name='account'),
     path('my_items', views.view_my_items, name='my_items'),
     path('my_offers', views.view_my_offers, name='my_offers'),
-    path('account_settings', views.view_account_settings, name='account_settings')
+    path('account_settings', views.view_account_settings, name='account_settings'),
+    path('<int:userid>', views.view_other_account, name='other_account'),
+    path('<int:userid>/catalog', views.view_user_catalog, name='user_catalog')
 ]

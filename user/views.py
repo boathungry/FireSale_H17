@@ -57,13 +57,28 @@ def view_account(request):
     except ObjectDoesNotExist:
         accepted_offers = None
     user_context = {
-        'user_name': user.name,
-        'user_bio': user.bio,
-        'user_image': user.image,
-        'user_rating': user.rating,
+        'other_user': False,
+        'user': user,
         'accepted_offers': accepted_offers
     }
     return render(request, 'user/account.html', context=user_context)
+
+
+def view_other_account(request, userid):
+    user = User.objects.get(id=userid)
+    user_context = {
+        'other_user': True,
+        'user': user,
+        'accepted_offers': None
+    }
+    return render(request, 'user/account.html', context=user_context)
+
+
+def view_user_catalog(request, userid):
+    user = User.objects.get(id=userid)
+    items = Item.objects.filter(sellerid=userid)
+    context = {"user": user, "items": items}
+    return render(request, 'user/user_catalog.html', context=context)
 
 
 def view_my_items(request):
