@@ -1,11 +1,8 @@
-import re
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-
 from catalog.models import Item
 from user.models import User
-from forms.checkout_form import CheckoutCreateForm
-from sale.models import Sale
+from forms.checkout_form import CheckoutCreateForm, BillingCreateForm
 from django.contrib import messages
 # Create your views here.
 
@@ -43,7 +40,7 @@ def create_checkout(request, id):
 @login_required
 def create_billing(request, id):
     if request.method == 'POST':
-        form = CheckoutCreateForm(data=request.POST)
+        form = BillingCreateForm(data=request.POST)
         authuser = request.user
         user = User.objects.get(auth=authuser.id)
         item = Item.objects.get(id=id)
@@ -56,13 +53,13 @@ def create_billing(request, id):
         error_string = '\n'.join([' '.join(l) for l in list(form.errors.values())])
         messages.error(request, error_string)
     else:
-        form = CheckoutCreateForm()
+        form = BillingCreateForm()
         if 'credit_card_name' in request.session:
             form.fields['credit_card_name'].initial = request.session['credit_card_name']
             form.fields['credit_card_number'].initial = request.session['credit_card_number']
             form.fields['expiration_date'].initial = request.session['expiration_date']
             form.fields['cvv'].initial = request.session['cvv']
-    return render(request, 'sale/buyout_item.html', {
+    return render(request, 'sale/billing_checkout.html', {
         'form': form
     })
 
@@ -70,8 +67,9 @@ def create_billing(request, id):
 def view_buyout_item(request):
     return render(request, 'sale/buyout_item.html')
 
-def view_billing(request):
+def view_billing(request, id):
     return render(request, 'sale/billing_checkout.html')
 
-def view_checkout_steps(request):
-    return render(request, 'sale/checkout_steps.html')
+def view_checkout_overview(request):
+    context = {'session': request.session}
+    return render(request, 'sale/checkout_overview.html', context)

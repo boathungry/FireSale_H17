@@ -12,26 +12,30 @@ from forms.item_form import ItemCreateForm
 
 
 def index(request):
-    order_by_values = {
-        "high": "-buyout",
-        "low": "buyout",
-        "name": "name",
-        "new": "-id",
-    }
-    order_option = request.GET.get("order-by", 'name')
-
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
-        order_option = request.GET.get("order-by", "name")
-        items = list(Item.objects.filter(name__icontains=search_filter).values().order_by(order_by_values[order_option]))
+        items = list(Item.objects.filter(name__icontains=search_filter).values())
         return JsonResponse({'data': items})
 
-    if 'category' in request.GET:
-        order_option = request.GET.get("order-by", "name")
-        context = {'items': Item.objects.filter(catid=request.GET['category']).order_by(order_by_values[order_option])}
+    elif 'category' in request.GET and 'order_by' in request.GET:
+        order_option = request.GET['order_by']
+        cat = request.GET['category']
+        split = order_option.split("_")
+        field = split[0]
+        order = split[1]
+        if order == 'desc':
+            order = '-'
+        else:
+            order = ''
+        items = list(Item.objects.filter(catid=cat).order_by(order + field).values())
+
+        return JsonResponse({'data': items})
+    elif 'category' in request.GET:
+        context = {'items': Item.objects.filter(catid=request.GET['category'])}
         return render(request, 'catalog/index.html', context)
 
-    items = Item.objects.all().order_by(order_by_values[order_option])
+
+    items = Item.objects.all()
     context = {'items': items}
     return render(request, 'catalog/index.html', context)
 

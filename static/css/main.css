@@ -1,18 +1,18 @@
 root {
-    --link-color: #685206;
+	--link-color: #685206;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+	position: relative;
+	min-height: 100%;
 }
 
 main > .container {
-    padding: 60px 15px 70px;
+	padding: 60px 15px 70px;
 }
 
 .single_item {
-    margin: 20px;
+	margin: 20px;
 }
 
 .rating-star {
@@ -22,126 +22,126 @@ main > .container {
 }
 
 body {
-    background-image: linear-gradient( #E7BF9B, #FFFFFF);
-    background-attachment: fixed;
-    min-height: 75rem;
-    font-family: Tahoma, sans-serif;
+	background-image: linear-gradient(#e7bf9b, #ffffff);
+	background-attachment: fixed;
+	min-height: 75rem;
+	font-family: Tahoma, sans-serif;
 }
 
-h1 { color: #111;
-    font-family: Tahoma, sans-serif;
-    font-size: 5rem;
-    font-weight: bold;
-    letter-spacing: -1px;
-    line-height: 1;
-    text-align: center; }
-
-h2 { color: #111;
-    font-family: Tahoma, sans-serif;
-    font-size: 2rem;
-    font-weight: 300;
-    line-height: 32px;
-    margin: 0 0 72px;
-    text-align: center; }
-
-h3 { color: #111;
-    font-family: Tahoma, sans-serif;
-    font-size: 1.2rem;
-    font-weight: bold;
-
+h1 {
+	color: #111;
+	font-family: Tahoma, sans-serif;
+	font-size: 5rem;
+	font-weight: bold;
+	letter-spacing: -1px;
+	line-height: 1;
+	text-align: center;
 }
 
-p { color: #111;
-    font-family: Tahoma, sans-serif;
-    font-size: 1rem;
-    line-height: 1rem;
-    margin: 0 0 24px;
-    text-align: justify;
-    text-justify: inter-word;
+h2 {
+	color: #111;
+	font-family: Tahoma, sans-serif;
+	font-size: 2rem;
+	font-weight: 300;
+	line-height: 32px;
+	margin: 0 0 72px;
+	text-align: center;
+}
+
+h3 {
+	color: #111;
+	font-family: Tahoma, sans-serif;
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+
+p {
+	color: #111;
+	font-family: Tahoma, sans-serif;
+	font-size: 1rem;
+	line-height: 1rem;
+	margin: 0 0 24px;
+	text-align: justify;
+	text-justify: inter-word;
 }
 
 .single_item:link {
-    color: var(--link-color);
-    text-decoration: none;
+	color: var(--link-color);
+	text-decoration: none;
 }
 
 .single_item:visited {
-    color: var(--link-color);
-    text-decoration: none;
+	color: var(--link-color);
+	text-decoration: none;
 }
 
 .single_item:hover {
-    color: var(--link-color);
-    text-decoration: underline;
+	color: var(--link-color);
+	text-decoration: underline;
 }
 
 .single_item:active {
-    color: var(--link-color);
-    text-decoration: underline;
+	color: var(--link-color);
+	text-decoration: underline;
 }
 
 .item-img {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
-    width: 150px;
-    background-blend-mode: darken;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 5px;
+	width: 150px;
+	background-blend-mode: darken;
 }
 .navbar-logo {
-    vertical-align: text-bottom;
+	vertical-align: text-bottom;
 }
 
 .item-img {
-    width: 200px;
-    height: auto;
+	width: 200px;
+	height: 200px;
 }
 
 .form-signin {
-    width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: auto;
+	width: 100%;
+	max-width: 330px;
+	padding: 15px;
+	margin: auto;
 }
 
 .form-signin .form-floating:focus-within {
-  z-index: 2;
+	z-index: 2;
 }
 
 .form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
 }
 
 .form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 
 .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
 
 @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
 
 .ms-n5 {
-    margin-left: -10px;
+	margin-left: -10px;
 }
 
 .asteriskField {
-    display: none;
+	display: none;
 }
-
-
-
-
-
