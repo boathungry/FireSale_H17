@@ -9,6 +9,7 @@ offer_button.addEventListener("click", function () {
         request.setRequestHeader('Content-Type', 'application/json');
         request.setRequestHeader('x-CSRFToken', csrf); //send the csrf token
         request.addEventListener("loadend", refresh_page)
+        request.send(JSON.stringify({'amount': amount}));
     }
 });
 
