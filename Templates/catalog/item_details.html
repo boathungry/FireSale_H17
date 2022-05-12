@@ -4,7 +4,9 @@
         <p>Item Name: {{ item.name }}</p>
         <p>Description: {{ item.description }}</p>
         <p>Buyout Price: ${{ item.buyout|floatformat:2 }}</p>
+        {% if offers %}
         <p>Current highest offer: ${{ highest_offer.amount|floatformat:2 }} offered by {{ highest_offer.buyerid.name }}</p>
+        {% endif %}
     </div>
     {% if item.sellerid != buyer %}
         <div class="buyout-offer-btn">
@@ -34,7 +36,6 @@
             <p>No current offers.</p>
         {% endfor %}
     </div>
-    <div class="container">
         <div class="similar-items">
         <h4>Similar items:</h4>
             {% for simitem in items%}
@@ -43,7 +44,6 @@
             <p>Sorry, no similar items.</p>
             {% endfor %}
         </div>
-    </div>
     {% load static %}
     <!-- Pass the item id and csrf token to the javascript file -->
     <script>let itemid = {{ item.id }}</script>
