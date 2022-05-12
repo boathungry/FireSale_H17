@@ -8,7 +8,7 @@ html {
 }
 
 main > .container {
-  padding: 60px 15px 35px;
+    padding: 60px 15px 70px;
 }
 
 .single_item {
@@ -21,7 +21,6 @@ body {
     min-height: 75rem;
     font-family: Tahoma, sans-serif;
 }
-
 
 h1 { color: #111;
     font-family: Tahoma, sans-serif;
