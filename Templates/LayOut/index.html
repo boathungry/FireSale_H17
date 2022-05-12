@@ -2,10 +2,11 @@
     {% block content %}
     {% if user.is_authenticated %}
         <!-- User Home Page -->
-        <div class="UserLayOut d-flex flex-grow-1">
+        <div class="UserLayOut d-flex flex-grow-1 mb-5 pb-5"">
             <h2>Welcome to the FireSale homepage {{ user.username|capfirst }}!</h2>
         </div>
         <a href="{% url 'create_item' %}" class="block btn btn-secondary">Create New Item</a>
+
     {% else %}
     <!-- Homepage -->
         <div class="LayOut d-flex flex-grow-1">
