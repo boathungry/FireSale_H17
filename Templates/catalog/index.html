@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
-{% block content %}
+{% block page_title %}
     <h2>Catalog</h2>
-    {% include 'catalog/order_by.html' %}
+{% endblock %}
+{% block content %}
+
     <div class="catalog-items d-flex align-content-stretch flex-wrap">
         {% for item in items %}
             {% if item.offer_accepted == False %}
