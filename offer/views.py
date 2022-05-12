@@ -82,7 +82,7 @@ def send_email(request, offer, message_type):
     if message_name == 'Item sold':
         buyer_list = Offer.objects.filter(itemid=offer.itemid).exclude(buyerid=offer.buyerid).values_list('buyerid')
         receiver_email = [buyer.email for buyer in buyer_list]
-        if receiver_email == [] :
+        if not receiver_email:
             return
     else:
         receiver_email = [offer.itemid.sellerid.email]
