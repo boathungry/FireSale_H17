@@ -13,19 +13,23 @@ $(document).ready(function () {
             type: 'GET',
             success: function(response) {
                 let newHtml = response.data.map(d => {
-                    return `<div class="well item">
+                    return `<div class="well_item d-flex align-items-center justify-content-evenly">
                                 <a class="single_item" href="/catalog/${d.id}">
+                                <div class="flex-grow-1">
                                     <img class="item-img" src="/media/${ d.image }" alt="${ d.name }" />
-                                    <h4>${d.name}</h4>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <h3>${d.name}</h3>
+                                    <p>Buyout price: ${ d.buyout.toFixed(2)} $</p>
                                 </a>
-                            </div>`
+                            </div>
+                           </div>`
                 });
                 if (newHtml == '') {
 
                     $('.content').html("<h3>Sorry! No results found. </h3>")
                 }
                 else {
-
                     $('.content').html(newHtml.join(''));
 
                 }
@@ -53,16 +57,17 @@ $(document).ready(function () {
             type: 'GET',
             success: function(response) {
                 let newHtml = response.data.map(d => {
-                    return `<div class="well item">
+                    return `<div class="well_item d-flex align-items-start justify-content-evenly">
                                 <a class="single_item" href="/catalog/${d.id}">
                                 <div class="flex-grow-1">
                                     <img class="item-img" src="/media/${ d.image }" alt="${ d.name }" />
                                 </div>
                                 <div class="flex-shrink-0">
                                     <h3>${d.name}</h3>
-                                    <p>Buyout price: ${ d.buyout.toFixed(2)  }</p>
+                                    <p>Buyout price: ${ d.buyout.toFixed(2)} $</p>
                                 </a>
-                            </div>`
+                            </div>
+                        </div>`
 
                 });
                 if (newHtml == '') {

@@ -12,33 +12,46 @@ from forms.item_form import ItemCreateForm
 
 
 def index(request):
-    if 'search_filter' in request.GET:
+    if 'search_filter' in request.GET and 'order_by' in request.GET:
+        order, field = get_order_option(request)
+        search_filter = request.GET['search_filter']
+        items = list(Item.objects.filter(name__icontains=search_filter).order_by(order + field).values())
+        return JsonResponse({'data': items})
+
+    elif 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         items = list(Item.objects.filter(name__icontains=search_filter).values())
         return JsonResponse({'data': items})
 
     elif 'category' in request.GET and 'order_by' in request.GET:
-        order_option = request.GET['order_by']
         cat = request.GET['category']
-        split = order_option.split("_")
-        field = split[0]
-        order = split[1]
-        if order == 'desc':
-            order = '-'
-        else:
-            order = ''
+        order, field = get_order_option(request)
         items = list(Item.objects.filter(catid=cat).order_by(order + field).values())
-
         return JsonResponse({'data': items})
+
     elif 'category' in request.GET:
         context = {'items': Item.objects.filter(catid=request.GET['category'])}
         return render(request, 'catalog/index.html', context)
 
+    elif 'order_by' in request.GET:
+        order, field = get_order_option(request)
+        items = list(Item.objects.all().order_by(order + field).values())
+        return JsonResponse({'data': items})
 
     items = Item.objects.all()
     context = {'items': items}
     return render(request, 'catalog/index.html', context)
 
+def get_order_option(request):
+    order_option = request.GET['order_by']
+    split = order_option.split("_")
+    field = split[0]
+    order = split[1]
+    if order == 'desc':
+        order = '-'
+    else:
+        order = ''
+    return order, field
 
 def get_item_by_id(request, id):
     offers = Offer.objects.filter(itemid=id)
