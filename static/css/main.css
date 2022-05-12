@@ -15,12 +15,6 @@ main > .container {
 	margin: 20px;
 }
 
-.rating-star {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-}
-
 body {
 	background-image: linear-gradient(#e7bf9b, #ffffff);
 	background-attachment: fixed;
@@ -144,4 +138,80 @@ p {
 
 .asteriskField {
 	display: none;
+}
+
+/* Rating */
+
+#user-rating {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+}
+
+#user-reviews {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	margin-top: 20px;
+}
+
+.single-review {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.reviewer-profile-pic-and-name {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	align-items: flex-end;
+}
+
+.review-rating-and-stars {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	position: relative;
+	left: 40px;
+}
+
+.review-body {
+	display: flex;
+	position: relative;
+	left: 40px;
+	top: -10px;
+	font-style: italic;
+}
+
+.rating-star {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+#rating-container {
+	display: flex;
+	flex-direction: column;
+	margin: 2em;
+}
+
+#star-div {
+	display: inline-block;
+}
+
+#review-div {
+	display: inline-block;
+}
+
+#review-input {
+	display: block;
+	top: 2em;
+	width: 30em;
+	height: 10em;
+}
+
+#review-label {
+	display: block;
+	top: 0em;
 }

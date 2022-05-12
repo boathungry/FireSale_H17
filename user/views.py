@@ -69,10 +69,12 @@ def view_account(request):
 
 def view_other_account(request, userid):
     user = User.objects.get(id=userid)
+    user_reviews = Review.objects.filter(user=user)
     user_context = {
         'other_user': True,
         'user': user,
-        'accepted_offers': None
+        'accepted_offers': None,
+        'reviews': user_reviews
     }
     return render(request, 'user/account.html', context=user_context)
 
