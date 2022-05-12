@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
     {% if accepted_offers != None %}
         {% for offer in accepted_offers %}
@@ -9,12 +10,23 @@
         <h2>{{ user.name }}'s profile</h2>
         <img src="{{ MEDIA_URL }}{{ user.image.url }}" alt="{{ image }}" width="100px" height="100px">
         <h4>{{ user.name }}</h4>
-        <p>Rating: {{ user.rating }}</p>
+        <span id="user-rating"><p>Rating: {{ user.rating }}</p><img src="{% static "images/star_dark.png" %}" alt="stars" height="16px" width="16px"/></span></span>
         <p>{{ user.bio }}</p>
         {% if not other_user %}
             <a class="btn btn-secondary" href="/User/account_settings">Account Settings</a>
             {% else %}
+            <a class="btn btn-primary" href="/User/{{ user.id }}/catalog">View {{ user.name }}'s catalog</a>
+            <div id="user-reviews">
+            <h4>Reviews:</h4>
+            {% for review in reviews %}
+            <div class="single-review">
+                <span class="reviewer-profile-pic-and-name"><img src="{{ MEDIA_URL }}{{ review.reviewer.image.url }}" alt="{{ review.reviewer.name }}" class="rounded-circle article-img" width="32px" height="32px" /><h5>{{ review.reviewer.name }}</h5></span>
+                <span class="review-rating-and-stars"><p>{{ review.rating }}</p><img src="{% static "images/star_dark.png" %}" alt="stars" height="16px" width="16px"/></span>
+                <span class="review-body"><p>"{{ review.review }}"</p></span>
+            </div>
+            {% endfor %}
             <button type="button" class="btn btn-secondary" id="rating-btn">Rate user</button>
+            </div>
         {% endif %}
     </div>
     {% if not other_user %}
@@ -22,8 +34,6 @@
             <a class="btn btn-secondary" href="/User/my_items">My Items</a>
             <a class="btn btn-secondary" href="/User/my_offers">My Offers</a>
         </div>
-        {% else %}
-        <a class="btn btn-primary" href="/User/{{ user.id }}/catalog">View {{ user.name }}'s catalog</a>
     {% endif %}
 
     {% if other_user %}

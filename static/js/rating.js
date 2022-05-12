@@ -8,9 +8,14 @@ let rating = 0;
 show_rating_btn.addEventListener("click", show_rating);
 
 function show_rating() {
+    //Create a container to hold all the rating stuff
+    let rating_container = document.createElement("div");
+    rating_container.id = "rating-container";
+    account_info_div.appendChild(rating_container);
+    //Show stars and add event listeners to them
     let star_div = document.createElement("div");
     star_div.id = "star-div";
-    account_info_div.appendChild(star_div);
+    rating_container.appendChild(star_div);
     for (let i = 1; i <= 5; i++) {
         let star = document.createElement("img");
         star.src = star_light_img;
@@ -21,14 +26,27 @@ function show_rating() {
         star.addEventListener("click", stars_freeze);
         star_div.appendChild(star);
     }
+    //Add a text box for the user to type in their review
+    let review_div = document.createElement("div");
+    review_div.id = "review-div";
+    rating_container.appendChild(review_div);
+    let review_box_label = document.createElement("label");
+    review_box_label.id = "review-label";
+    review_box_label.innerText = "Leave a review:";
+    let review_box = document.createElement("textarea");
+    review_box.id = "review-input";
+    review_box.type = "text";
+    review_div.appendChild(review_box_label);
+    review_div.appendChild(review_box);
+    //Make changes to the 'Rate user' button so it becomes a 'Cancel' button
     show_rating_btn.removeEventListener("click", show_rating);
     show_rating_btn.addEventListener("click", hide_rating);
     show_rating_btn.innerText = "Cancel";
 }
 
 function hide_rating() {
-    let star_div = document.getElementById("star-div");
-    star_div.remove();
+    let rating_container = document.getElementById("rating-container");
+    rating_container.remove();
     show_rating_btn.removeEventListener("click", hide_rating);
     show_rating_btn.addEventListener("click", show_rating);
     show_rating_btn.innerText = "Rate user";
@@ -100,19 +118,20 @@ function stars_freeze() {
         rate_btn.type = "button";
         rate_btn.id = "confirm-rating-btn";
         rate_btn.className = "btn btn-primary";
-        rate_btn.innerText = "Confirm rating";
+        rate_btn.innerText = "Post review";
         rate_btn.addEventListener("click", confirm_rating)
-        let star_div = document.getElementById("star-div");
-        star_div.appendChild(rate_btn);
+        let rating_container = document.getElementById("rating-container");
+        rating_container.appendChild(rate_btn);
     }
 }
 
 function confirm_rating() {
+    let review = document.getElementById("review-input");
     let request = new XMLHttpRequest(); //create a http request
     request.open("POST", '../../User/' + userid + '/rate', true);
     request.setRequestHeader('Content-Type', 'application/json');
     request.setRequestHeader('x-CSRFToken', csrf); //send the csrf token
-    request.send(JSON.stringify({'rating': rating, 'review': "REVIEW PLACEHOLDER"})); //send the offer amount with the request
+    request.send(JSON.stringify({'rating': rating, 'review': review.value})); //send the rating and review with the request
     request.addEventListener("loadend", refresh_page)
 }
 
