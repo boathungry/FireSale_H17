@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="ItemInfo">
-        <p>Item Name: {{ item.name }}</p>
+        <h2>Item Name: {{ item.name }}</h2>
         <p>Sold by <a href="../../User/{{ item.sellerid.id }}">{{ item.sellerid.name }}</a></p>
         <p>Description: {{ item.description }}</p>
         <p>Buyout Price: ${{ item.buyout|floatformat:2 }}</p>
@@ -24,7 +24,7 @@
     <div class="current-offers">
         <h4>Current offers:</h4>
         {% for offer in offers %}
-            <div>
+            <div class="current-offers mt-3">
                 {{ offer.datetime }}: {{ offer.buyerid.name }} offered ${{ offer.amount|floatformat:2 }}
                 {% if buyer == offer.buyerid %}
                     <form action="/offer/cancel_offer/{{ offer.id }}/{{ item.id }}" method="post">
@@ -37,7 +37,7 @@
             <p>No current offers.</p>
         {% endfor %}
     </div>
-        <div class="similar-items">
+        <div class="similar-items mt-3">
         <h4>Similar items:</h4>
             <div class="catalog-items d-flex flex-row align-content-start flex-wrap">
                 {% for simitem in similar_items %}
