@@ -33,20 +33,16 @@
 
     <!-- content -->
 <main class="flex-grow-1">
-<div class="container"
-    <div class="container d-flex justify-content-center ">
-        <div class="col-md-8">
+<div class="container">
+    <div class="container d-flex justify-content-start ">
 
             <!-- Messages -->
             {% include 'messages.html' %}
-            <div class="catalog-items d-flex align-content-start flex-wrap">
                 <div class="content">
                     {% block content %}
                     {% endblock %}
                 </div>
-            </div>
         </div>
-    </div>
 </main>
 
 

@@ -2,17 +2,21 @@
 {% block content %}
     <h3>My items</h3>
     {% if user_items != null %}
-        {% for item in user_items %}
-            {% include 'catalog/single_item.html' with item=item %}
-            <form action="../offer/item_offers/{{ item.id }}" method="post">
-            {% csrf_token %}
-            <input type="submit" class="btn btn-primary" value="View offers" />
-            </form>
-            <a class="btn btn-secondary" href="../catalog/delete_item/{{ item.id }}">Delete</a>
-        {% endfor %}
-    {% else %}
-        <h4>No items</h4>
-    {% endif %}
+        <div class="catalog-items d-flex flex-row align-content-start flex-wrap">
+            {% for item in user_items %}
+                {% include 'catalog/single_item.html' with item=item %}
+                <div class="flex-shrink-1 align-items-start">
+                <form action="../offer/item_offers/{{ item.id }}" method="post">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-secondary" value="View offers" />
+                </form>
+                <a class="btn btn-light" href="../catalog/delete_item/{{ item.id }}">Delete</a>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <h4>No items</h4>
+        {% endif %}
     <p></p>
-    <a class="btn btn-primary" href="/catalog/create_item">Create new item</a>
+    <a class="btn btn-secondary" href="/catalog/create_item">Create new item</a>
 {% endblock %}

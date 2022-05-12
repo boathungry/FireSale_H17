@@ -2,11 +2,13 @@
 {% block content %}
     <h3>My offers</h3>
     {% if user_offers != null %}
+        <div class="catalog-items d-flex flex-row align-content-start flex-wrap">
         {% for offer in user_offers %}
             {% for item in item_list %}
                 {% if item.id == offer.itemid.id %}
                     {% include 'catalog/single_item.html' with item=item %}
-                    <h4>You offered: {{ offer.amount }}$</h4>
+                    <div class="flex-shrink-1 mt-5">
+                    <h4>You offered: {{ offer.amount|floatformat:2 }}$</h4>
                     {% if offer.accepted == False and item.offer_accepted == False %}
                         <h5>Status: Bidding ongoing</h5>
                     {% elif offer.accepted == False and item.offer_accepted == True %}
@@ -19,8 +21,10 @@
                         {% csrf_token %}
                     <input type="submit" class="btn btn-secondary" value="Cancel">
                     </form>
+                    </div>
                 {% endif %}
             {% endfor %}
         {% endfor %}
+        </div>
     {% endif %}
 {% endblock %}

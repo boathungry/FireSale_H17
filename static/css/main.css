@@ -19,12 +19,11 @@ body {
 	background-image: linear-gradient(#e7bf9b, #ffffff);
 	background-attachment: fixed;
 	min-height: 75rem;
-	font-family: Tahoma, sans-serif;
+	font-family: "Open Sans", sans-serif;
 }
 
 h1 {
 	color: #111;
-	font-family: Tahoma, sans-serif;
 	font-size: 5rem;
 	font-weight: bold;
 	letter-spacing: -1px;
@@ -34,7 +33,6 @@ h1 {
 
 h2 {
 	color: #111;
-	font-family: Tahoma, sans-serif;
 	font-size: 2rem;
 	font-weight: 300;
 	line-height: 32px;
@@ -44,14 +42,22 @@ h2 {
 
 h3 {
 	color: #111;
-	font-family: Tahoma, sans-serif;
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 	font-weight: bold;
+}
+h4 {
+	color: #111;
+	font-size: 1.2rem;
+	font-weight: 100;
+}
+h5 {
+	color: #111111;
+	font-size: 1rem;
+	font-style: italic;
 }
 
 p {
 	color: #111;
-	font-family: Tahoma, sans-serif;
 	font-size: 1rem;
 	line-height: 1rem;
 	margin: 0 0 24px;
