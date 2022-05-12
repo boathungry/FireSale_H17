@@ -2,13 +2,14 @@
 <main class="text-center form-create-item">
 	<form
 		class="form"
-		enctype="multipart/form-data"
 		action="{% url 'buyout_item' %}"
 		method="post"
 	>
 		{% csrf_token %} {{ form|crispy }}
 		<input type="submit" value="Submit" class="btn-secondary" />
 	</form>
-	<a class="btn btn-secondary" href="/sale/billing_checkout">Next</a>
+	<a class="btn btn-secondary" href="/sale/billing_checkout/{{ item.id }}">Billing</a>
+	<a class="btn btn-secondary" href="/sale/checkout_overview/{{ item.id }}">Overview</a>
+	</div>
 </main>
 {% endblock %}
