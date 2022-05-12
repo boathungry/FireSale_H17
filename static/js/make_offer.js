@@ -8,6 +8,10 @@ offer_button.addEventListener("click", function () {
         request.open("POST", '../../offer/make_offer/' + itemid, true);
         request.setRequestHeader('Content-Type', 'application/json');
         request.setRequestHeader('x-CSRFToken', csrf); //send the csrf token
-        request.send(JSON.stringify({'amount':amount})); //send the offer amount with the request
-    };
+        request.addEventListener("loadend", refresh_page)
+    }
 });
+
+function refresh_page() {
+    window.location.reload()
+}
