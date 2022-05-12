@@ -39,11 +39,13 @@
     </div>
         <div class="similar-items">
         <h4>Similar items:</h4>
-            {% for simitem in similar_items %}
-                {% include 'catalog/single_item.html' with item=simitem %}
+            <div class="catalog-items d-flex flex-row align-content-start flex-wrap">
+                {% for simitem in similar_items %}
+                    {% include 'catalog/single_item.html' with item=simitem %}
             {% empty %}
             <p>Sorry, no similar items.</p>
             {% endfor %}
+            </div>
         </div>
     {% load static %}
     <!-- Pass the item id and csrf token to the javascript file -->
