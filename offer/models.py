@@ -6,7 +6,7 @@ from django.core.validators import MinValueValidator
 
 class Offer(models.Model):
     datetime = models.DateTimeField(auto_now_add=True)
-    amount = models.FloatField(validators=[MinValueValidator(0.0)])
+    amount = models.FloatField(validators=[MinValueValidator(0.1)])
     itemid = models.ForeignKey(Item, on_delete=models.CASCADE)
     buyerid = models.ForeignKey(User, on_delete=models.CASCADE)
     accepted = models.BooleanField(default=False)

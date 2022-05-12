@@ -21,16 +21,18 @@ $(document).ready(function () {
                                 <div class="flex-shrink-0">
                                     <h3>${d.name}</h3>
                                     <p>Buyout price: ${ d.buyout.toFixed(2)} $</p>
-                                </a>
-                            </div>
+                                </div>
+                               </a>
                            </div>`
                 });
-                if (newHtml == '') {
+                if (newHtml === '') {
 
                     $('.content').html("<h3>Sorry! No results found. </h3>")
                 }
                 else {
-                    $('.content').html(newHtml.join(''));
+                    let divStartTag = `<div class="catalog-items d-flex align-content-stretch flex-wrap">`
+                    let divEndTag = `</div>`
+                    $('.content').html(divStartTag + newHtml.join('') + divEndTag);
 
                 }
                 $('#search-box').val('');
@@ -57,7 +59,7 @@ $(document).ready(function () {
             type: 'GET',
             success: function(response) {
                 let newHtml = response.data.map(d => {
-                    return `<div class="well_item d-flex align-items-start justify-content-evenly">
+                    return `<div class="well_item d-flex align-items-center justify-content-evenly">
                                 <a class="single_item" href="/catalog/${d.id}">
                                 <div class="flex-grow-1">
                                     <img class="item-img" src="/media/${ d.image }" alt="${ d.name }" />
@@ -65,8 +67,8 @@ $(document).ready(function () {
                                 <div class="flex-shrink-0">
                                     <h3>${d.name}</h3>
                                     <p>Buyout price: ${ d.buyout.toFixed(2)} $</p>
-                                </a>
-                            </div>
+                                </div>
+                               </a>
                         </div>`
 
                 });
@@ -75,8 +77,9 @@ $(document).ready(function () {
                     $('.content').html("<h3>Sorry! No results found. </h3>")
                 }
                 else {
-
-                    $('.content').html(newHtml.join(''));
+                    let divStartTag = `<div class="catalog-items d-flex align-content-stretch flex-wrap">`
+                    let divEndTag = `</div>`
+                    $('.content').html(divStartTag + newHtml.join('') + divEndTag);
 
                 }
                 $('#search-box').val('');
