@@ -42,7 +42,10 @@ def get_item_by_id(request, id):
     highest_offer_amount = highest_offer_dict['amount__max']
     highest_offer = Offer.objects.filter(itemid=id, amount=highest_offer_amount).first()
     authuser = request.user
-    buyer = User.objects.get(auth=authuser.id)
+    if request.user.is_authenticated:
+        buyer = User.objects.get(auth=authuser.id)
+    else:
+        buyer = None
     return render(request, 'catalog/item_details.html', {
         'item': get_object_or_404(Item, pk=id),
         'offers': offers,
