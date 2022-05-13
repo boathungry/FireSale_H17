@@ -55,6 +55,7 @@ def create_account(request, id):
 def view_account(request):
     auth_id = request.user.id
     user = User.objects.get(auth=auth_id)
+    user_reviews = Review.objects.filter(user=user)
     try:
         accepted_offers = Offer.objects.filter(buyerid=user.id, accepted=True)
     except ObjectDoesNotExist:
@@ -62,7 +63,8 @@ def view_account(request):
     user_context = {
         'other_user': False,
         'user': user,
-        'accepted_offers': accepted_offers
+        'accepted_offers': accepted_offers,
+        'reviews': user_reviews
     }
     return render(request, 'user/account.html', context=user_context)
 

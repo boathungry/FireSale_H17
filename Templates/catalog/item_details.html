@@ -3,6 +3,7 @@
     <div class="ItemInfo">
         <h2>Item Name: {{ item.name }}</h2>
         <p>Sold by <a href="../../User/{{ item.sellerid.id }}">{{ item.sellerid.name }}</a></p>
+        <p>Condition: {{ item.condition }}</p>
         <p>Description: {{ item.description }}</p>
         <p>Buyout Price: ${{ item.buyout|floatformat:2 }}</p>
         {% if offers %}
@@ -29,7 +30,12 @@
                 {% if buyer == offer.buyerid %}
                     <form action="/offer/cancel_offer/{{ offer.id }}/{{ item.id }}" method="post">
                     {% csrf_token %}
-                    <input id="itempage-cancel-offer-btn" type="submit" class="btn btn-secondary" value="Cancel offer">
+                    <input id="itempage-cancel-offer-btn" type="submit" class="btn btn-secondary" value="Cancel offer" />
+                    </form>
+                {% elif buyer == item.sellerid %}
+                    <form action="/offer/accept_offer/{{ offer.id }}" method="post">
+                    {% csrf_token %}
+                    <input id="itempage-accept-offer-btn" type="submit" class="btn btn-secondary" value="Accept offer" />
                     </form>
                 {% endif %}
             </div>

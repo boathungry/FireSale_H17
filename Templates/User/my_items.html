@@ -6,11 +6,15 @@
             {% for item in user_items %}
                 {% include 'catalog/single_item.html' with item=item %}
                 <div class="flex-shrink-1 align-items-start">
-                <form action="../offer/item_offers/{{ item.id }}" method="post">
-                {% csrf_token %}
-                <input type="submit" class="btn btn-secondary" value="View offers" />
-                </form>
-                <a class="btn btn-light" href="../catalog/delete_item/{{ item.id }}">Delete</a>
+                    {% if item.offer_accepted %}
+                        <button type="button" class="btn btn-secondary" disabled>Offer accepted</button>
+                    {% else %}
+                        <form action="../offer/item_offers/{{ item.id }}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-secondary" value="View offers" />
+                        </form>
+                    {% endif %}
+                    <a class="btn btn-light" href="../catalog/delete_item/{{ item.id }}">Delete</a>
                 </div>
             {% endfor %}
         </div>
