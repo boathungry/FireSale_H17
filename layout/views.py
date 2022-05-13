@@ -21,6 +21,4 @@ def index(request):
 
 def view_about(request):
     """View the about page"""
-    authid = request.user.id
-    user = User.objects.filter(id=authid)
     return render(request, 'layout/about.html', context={"user": user})
