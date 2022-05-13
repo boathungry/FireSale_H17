@@ -43,7 +43,10 @@ def cancel_offer_itempage(request, id, itemid):
 
 
 def delete_offer(offerid):
-    Offer.objects.get(id=offerid).delete()
+    offer = Offer.objects.get(id=offerid)
+    if offer.itemid.offer_accepted:
+        offer.itemid.offer_accepted = False
+    offer.delete()
 
 
 def get_offers_for_item(request, itemid):
