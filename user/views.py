@@ -42,7 +42,7 @@ def create_account(request, id):
             user.bio = request.POST.get('bio')
             user.image = request.FILES.get('image')
             user.rating = 0
-            user.auth = AuthUser.objects.get(id=id)
+            user.id = AuthUser.objects.get(id=id)
             user.save()
             messages.success(request, f'Account created for {user.name}!')
             return redirect('login')
@@ -61,7 +61,7 @@ def view_account(request):
     user = User.objects.get(id=auth_id)
     user_reviews = Review.objects.filter(user=user)
     try:
-        accepted_offers = Offer.objects.filter(buyerid=user.id, accepted=True)
+        accepted_offers = Offer.objects.filter(buyerid=user, accepted=True)
     except ObjectDoesNotExist:
         accepted_offers = None
     user_context = {
@@ -98,7 +98,7 @@ def view_my_items(request):
     """View the items sold by the user who is currently logged in"""
     user = get_user(request.user.id)
     try:
-        user_items = Item.objects.filter(sellerid=user.id)
+        user_items = Item.objects.filter(sellerid=user)
         context = {'user_items': user_items}
         return render(request, 'user/my_items.html', context)
     except ObjectDoesNotExist:
@@ -109,7 +109,7 @@ def view_my_offers(request):
     """View the offers made by the user who is currently logged in"""
     user = get_user(request.user.id)
     try:
-        user_offers = Offer.objects.filter(buyerid=user.id)
+        user_offers = Offer.objects.filter(buyerid=user)
         item_list = []
         for offer in user_offers:
             item_list.append(Item.objects.get(id=offer.itemid.id))
