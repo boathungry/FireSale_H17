@@ -12,6 +12,7 @@ from forms.item_form import ItemCreateForm
 
 
 def index(request):
+    """View the catalog, filter by the search keywords or category if applicable"""
     if 'search_filter' in request.GET and 'order_by' in request.GET:
         order, field = get_order_option(request)
         search_filter = request.GET['search_filter']
@@ -42,7 +43,9 @@ def index(request):
     context = {'items': items}
     return render(request, 'catalog/index.html', context)
 
+
 def get_order_option(request):
+    """Returns what to sort by and in what order"""
     order_option = request.GET['order_by']
     split = order_option.split("_")
     field = split[0]
@@ -53,7 +56,9 @@ def get_order_option(request):
         order = ''
     return order, field
 
+
 def get_item_by_id(request, id):
+    """Gets an item by its id and returns all info necessary for the item detail page"""
     offers = Offer.objects.filter(itemid=id)
     highest_offer_dict = offers.aggregate(Max('amount'))
     highest_offer_amount = highest_offer_dict['amount__max']
@@ -76,6 +81,7 @@ def get_item_by_id(request, id):
 
 @login_required
 def create_item(request):
+    """Creates a new item"""
     if request.method == 'POST':
         form = ItemCreateForm(request.POST, request.FILES)
         print(request.user)
@@ -102,5 +108,6 @@ def create_item(request):
 
 
 def delete_item(request, itemid):
+    """Deletes an item with the given id"""
     Item.objects.get(id=itemid).delete()
     return redirect('my_items')
