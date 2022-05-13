@@ -73,17 +73,17 @@ def view_checkout_overview(request, id):
         offer = Offer.objects.get(buyerid=request.user.id, itemid=id)
     except ObjectDoesNotExist:
         offer = None
-        if request.method == 'GET':
-            context = {
-                'item': Item.objects.get(pk=id),
-                'billing_name': request.session["billing_name"],
-                'email': request.session["email"],
-                'shipping_address': request.session["shipping_address"],
-                'postal_code': request.session["postal_code"],
-                'country': request.session["country"],
-                'city': request.session["city"],
-                'offer': offer}
-        return render(request, 'sale/checkout_overview.html', context)
+    if request.method == 'GET':
+        context = {
+            'item': Item.objects.get(pk=id),
+            'billing_name': request.session["billing_name"],
+            'email': request.session["email"],
+            'shipping_address': request.session["shipping_address"],
+            'postal_code': request.session["postal_code"],
+            'country': request.session["country"],
+            'city': request.session["city"],
+            'offer': offer}
+    return render(request, 'sale/checkout_overview.html', context)
 
 
 @login_required

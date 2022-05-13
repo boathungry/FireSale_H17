@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
 <main class="text-center form-create-item">
-	<h3>Shipping Information</h3>
+	<h3>Billing Information</h3>
 	<form class="form" action="{% url 'billing_checkout' id=item.id %}" method="post">
 		{% csrf_token %} {{ form|crispy }}
 		<a class="btn btn-secondary" href="{% url 'buyout_item' id=item.id %}">Prev</a>
