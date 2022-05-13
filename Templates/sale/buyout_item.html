@@ -1,5 +1,4 @@
 {% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
-{% include 'sale/checkout_navbar.html' with shipping=True %}
 <main class="text-center form-create-item">
 	<form
 		class="form"
@@ -7,10 +6,8 @@
 		method="post"
 	>
 		{% csrf_token %} {{ form|crispy }}
+		<input type="submit" value="Next" name="step" class="btn btn-secondary">
 	</form>
-	<a class="btn btn-secondary" href="{% url 'buyout_item' id=item.id %}">Shipping Info</a>
-	<a class="btn btn-secondary" href="{% url 'billing_checkout' id=item.id %}">Payment Info</a>
-	<a class="btn btn-secondary" href="{% url 'checkout_overview' id=item.id %}">Payment Overview</a>
 	</div>
 </main>
 {% endblock %}

@@ -5,6 +5,7 @@ from user.models import User
 from sale.models import Sale
 from forms.checkout_form import CheckoutCreateForm, BillingCreateForm
 from django.contrib import messages
+import datetime
 # Create your views here.
 
 
@@ -12,17 +13,14 @@ from django.contrib import messages
 def create_checkout(request, id):
     if request.method == 'POST':
         form = CheckoutCreateForm(data=request.POST)
-        authuser = request.user
-        user = User.objects.get(auth=authuser.id)
-        item = Item.objects.get(id=id)
-        if form.is_valid():
+        if form.is_valid() :#and request.POST.get('step') == 'shipping':
             request.session['billing_name'] = form.cleaned_data.get('billing_name')
             request.session['email'] = form.cleaned_data.get('email')
             request.session['shipping_address'] = form.cleaned_data.get('shipping_address')
             request.session['postal_code'] = form.cleaned_data.get('postal_code')
             request.session['country'] = form.cleaned_data.get('country')
             request.session['city'] = form.cleaned_data.get('city')
-            return redirect('catalog-index')
+            return redirect('billing_checkout', id=id)
         error_string = '\n'.join([' '.join(l) for l in list(form.errors.values())])
         messages.error(request, error_string)
     else:
@@ -43,15 +41,12 @@ def create_checkout(request, id):
 def create_billing(request, id):
     if request.method == 'POST':
         form = BillingCreateForm(data=request.POST)
-        authuser = request.user
-        user = User.objects.get(auth=authuser.id)
-        item = Item.objects.get(id=id)
         if form.is_valid():
             request.session['credit_card_name'] = form.cleaned_data.get('credit_card_name')
             request.session['credit_card_number'] = form.cleaned_data.get('credit_card_number')
             request.session['expiration_date'] = form.cleaned_data.get('expiration_date')
             request.session['cvv'] = form.cleaned_data.get('cvv')
-            return redirect('catalog-index')
+            return redirect('checkout_overview', id=id)
         error_string = '\n'.join([' '.join(l) for l in list(form.errors.values())])
         messages.error(request, error_string)
     else:
@@ -67,10 +62,7 @@ def create_billing(request, id):
     })
 
 
-
-def view_billing(request, id):
-    return render(request, 'sale/billing_checkout.html')
-
+@login_required
 def view_checkout_overview(request, id):
     if request.method == 'GET':
         context = {
@@ -83,8 +75,24 @@ def view_checkout_overview(request, id):
             'city': request.session["city"],}
     return render(request, 'sale/checkout_overview.html', context)
 
+
+@login_required
 def checkout_final(request, id):
-    s = Sale()
-    s.city = request.session['city']
-    s.save()
-    return redirect("catalog-index")
+    if 'shipping_address' in request.session and 'credit_card_number' in request.session:
+        context = {'item': Item.objects.get(id=id)}
+        authuser = request.user
+        user = User.objects.get(auth=authuser.id)
+        item = Item.objects.get(id=id)
+        sale = Sale()
+        sale.itemid = item
+        sale.buyerid = user
+        sale.sellerid = item.sellerid
+        sale.price = item.buyout
+        sale.shipped = datetime.datetime.now() 
+        sale.shipping_address = request.session['shipping_address']
+        sale.postal_code = request.session['postal_code']
+        sale.country = request.session['country']
+        sale.city = request.session['city']
+        sale.save()
+        request.session.flush()
+        return render(request, "sale/checkout_confirmation.html", context)

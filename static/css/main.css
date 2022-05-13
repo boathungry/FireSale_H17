@@ -98,6 +98,13 @@ p {
 .item-img {
 	width: 200px;
 	height: 200px;
+	background-size: cover;
+	background-position: center center;
+	transition: all 0.3s;
+}
+
+.item-img:hover {
+	transform: scale(1.05)
 }
 
 .form-signin {

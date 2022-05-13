@@ -1,5 +1,4 @@
-{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %} 
-{% include 'sale/checkout_navbar.html' with overview=True %}
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
 <main class="text-center form-create-item">
 	<h4 class="overview-header">Checkout Overview</h4>
 	<div class="BuyerOverview">
@@ -16,14 +15,7 @@
 		<p>Description: {{ item.description }}</p>
 		<p>Buyout Price: ${{ item.buyout|floatformat:2 }}</p>
 	</div>
-	<a class="btn btn-secondary" href="{% url 'buyout_item' id=item.id %}"
-		>Shipping Info</a
-	>
-	<a class="btn btn-secondary" href="{% url 'billing_checkout' id=item.id %}"
-		>Payment Info</a
-	>
-	<a class="btn btn-secondary" href="{% url 'checkout_overview' id=item.id %}"
-		>Payment Overview</a
-	>
+	<a class="btn btn-secondary" href="{% url 'billing_checkout' id=item.id %}">Prev</a>
+	<a class="btn btn-secondary" href="{% url 'checkout_confirmation' id=item.id %}">Confirm Purchase</a>
 </main>
 {% endblock %}
