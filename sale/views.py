@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from catalog.models import Item
 from user.models import User
 from sale.models import Sale
+from offer.models import Offer
 from forms.checkout_form import CheckoutCreateForm, BillingCreateForm
 from django.contrib import messages
 import datetime
@@ -75,7 +76,8 @@ def view_checkout_overview(request, id):
             'shipping_address': request.session["shipping_address"],
             'postal_code': request.session["postal_code"],
             'country': request.session["country"],
-            'city': request.session["city"],}
+            'city': request.session["city"],
+            'offer': Offer.objects.get(id=id)}
     return render(request, 'sale/checkout_overview.html', context)
 
 

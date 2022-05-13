@@ -11,9 +11,15 @@
 	</div>
 	<h3 class="overview-header">Item Overview</h3>
 	<div class="ItemOverview">
+		{% if offer %}
+		<p>Item Name: {{ item.name }}</p>
+		<p>Description: {{ item.description }}</p>
+		<p>Offer Amount: ${{ offer.amount|floatformat:2 }}</p>
+		{% else %}
 		<p>Item Name: {{ item.name }}</p>
 		<p>Description: {{ item.description }}</p>
 		<p>Buyout Price: ${{ item.buyout|floatformat:2 }}</p>
+		{% endif %}
 	</div>
 	<a class="btn btn-secondary" href="{% url 'billing_checkout' id=item.id %}">Prev</a>
 	<a class="btn btn-secondary" href="{% url 'checkout_confirmation' id=item.id %}">Confirm Purchase</a>
