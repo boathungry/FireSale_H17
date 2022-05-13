@@ -13,10 +13,12 @@ from django.contrib import messages
 
 
 def get_user(auth_id):
+    """Use the id of django's default user class to find the user in our database."""
     return User.objects.get(auth=auth_id)
 
 
 def register(request):
+    """Create a new user in the django authenticated user database"""
     if request.method == 'POST':
         form = UserCreationForm(request.POST, request.FILES)
         if form.is_valid():
@@ -30,6 +32,7 @@ def register(request):
 
 
 def create_account(request, id):
+    """Create a new user in our database"""
     if request.method == 'POST':
         form = AccountCreationForm(request.POST, request.FILES)
         if form.is_valid():
@@ -53,6 +56,7 @@ def create_account(request, id):
 
 
 def view_account(request):
+    """View the account of the user who is currently logged in"""
     auth_id = request.user.id
     user = User.objects.get(auth=auth_id)
     user_reviews = Review.objects.filter(user=user)
@@ -70,6 +74,7 @@ def view_account(request):
 
 
 def view_other_account(request, userid):
+    """View the account of another user"""
     user = User.objects.get(id=userid)
     user_reviews = Review.objects.filter(user=user)
     user_context = {
@@ -82,6 +87,7 @@ def view_other_account(request, userid):
 
 
 def view_user_catalog(request, userid):
+    """View all the items sold by a specific user"""
     user = User.objects.get(id=userid)
     items = Item.objects.filter(sellerid=userid)
     context = {"user": user, "items": items}
@@ -89,6 +95,7 @@ def view_user_catalog(request, userid):
 
 
 def view_my_items(request):
+    """View the items sold by the user who is currently logged in"""
     user = get_user(request.user.id)
     try:
         user_items = Item.objects.filter(sellerid=user.id)
@@ -99,6 +106,7 @@ def view_my_items(request):
 
 
 def view_my_offers(request):
+    """View the offers made by the user who is currently logged in"""
     user = get_user(request.user.id)
     try:
         user_offers = Offer.objects.filter(buyerid=user.id)
@@ -111,6 +119,7 @@ def view_my_offers(request):
 
 
 def view_account_settings(request):
+    """Edit the account settings of the user who is currently logged in"""
     user = get_user(request.user.id)
     if request.method == 'POST':
         form = AccountCreationForm(request.POST, request.FILES)
@@ -130,6 +139,7 @@ def view_account_settings(request):
 
 
 def get_average_rating(userid):
+    """Use the id of a user(our database, not django default) to look up their average rating"""
     user = User.objects.get(id=userid)
     reviews = Review.objects.filter(user=user)
     review_avg = reviews.aggregate(Avg('rating'))
@@ -138,6 +148,7 @@ def get_average_rating(userid):
 
 
 def rate_user(request, userid):
+    """Create a new review for a user and post it, updating their average rating in the process"""
     if request.method == 'POST':
         user = User.objects.get(id=userid)
         new_review = Review()
