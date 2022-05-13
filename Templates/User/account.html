@@ -8,7 +8,7 @@
     {% endif %}
     <div id="account-info">
         <h2>{{ user.name|capfirst }}'s profile</h2>
-        <img src="{{ MEDIA_URL }}{{ user.image.url }}" alt="{{ image }}" width="100px" height="100px">
+        <img class="item-img" src="{{ MEDIA_URL }}{{ user.image.url }}" alt="{{ image }}">
         <h4>{{ user.name }}</h4>
         <span id="user-rating"><p>Rating: {{ user.rating }}</p><img src="{% static "images/star_dark.png" %}" alt="stars" height="16px" width="16px"/></span></span>
         <p>{{ user.bio }}</p>
@@ -23,8 +23,8 @@
             {% if reviews %}
             {% for review in reviews %}
                 <div class="single-review">
-                    <span class="reviewer-profile-pic-and-name"><img src="{{ MEDIA_URL }}{{ review.reviewer.image.url }}" alt="{{ review.reviewer.name }}" class="rounded-circle article-img" width="32px" height="32px" /><h5>{{ review.reviewer.name }}</h5></span>
-                    <span class="review-rating-and-stars"><p>{{ review.rating }}</p><img src="{% static "images/star_dark.png" %}" alt="stars" height="16px" width="16px"/></span>
+                    <span class="reviewer-profile-pic-and-name"><img class="item-img" src="{{ MEDIA_URL }}{{ review.reviewer.image.url }}" alt="{{ review.reviewer.name }}" class="rounded-circle article-img" width="32px" height="32px" /><h5>{{ review.reviewer.name }}</h5></span>
+                    <span class="review-rating-and-stars"><p>{{ review.rating }}</p><img class="item-img" src="{% static "images/star_dark.png" %}" alt="stars" height="16px" width="16px"/></span>
                     <span class="review-body"><p>"{{ review.review }}"</p></span>
                 </div>
             {% endfor %}
