@@ -9,6 +9,10 @@
         <div class="create item p-2 m-2 align-center">
             <a href="{% url 'create_item' %}" class="block btn btn-secondary">Create New Item</a>
         </div>
+        {% if user_offers %} {% include "User/my_offer.html" %} {% endif %}
+        <div class="create item p-2 m-2 align-center">
+            <a href='../User/my_offers' class="block btn btn-secondary">My Offers</a>
+        </div>
     {% else %}
     <!-- Homepage -->
         <div class="LayOut d-flex flex-grow-1">

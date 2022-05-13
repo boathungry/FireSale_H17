@@ -7,6 +7,7 @@ from offer.models import Offer
 from forms.checkout_form import CheckoutCreateForm, BillingCreateForm
 from django.contrib import messages
 import datetime
+from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
 
@@ -68,18 +69,21 @@ def create_billing(request, id):
 @login_required
 def view_checkout_overview(request, id):
     """Get an overview of the order"""
-    offer = Offer.objects.get(buyerid=request.user.id, itemid=id)
-    if request.method == 'GET':
-        context = {
-            'item': Item.objects.get(pk=id),
-            'billing_name': request.session["billing_name"],
-            'email': request.session["email"],
-            'shipping_address': request.session["shipping_address"],
-            'postal_code': request.session["postal_code"],
-            'country': request.session["country"],
-            'city': request.session["city"],
-            'offer': offer}
-    return render(request, 'sale/checkout_overview.html', context)
+    try:
+        offer = Offer.objects.get(buyerid=request.user.id, itemid=id)
+    except ObjectDoesNotExist:
+        offer = None
+        if request.method == 'GET':
+            context = {
+                'item': Item.objects.get(pk=id),
+                'billing_name': request.session["billing_name"],
+                'email': request.session["email"],
+                'shipping_address': request.session["shipping_address"],
+                'postal_code': request.session["postal_code"],
+                'country': request.session["country"],
+                'city': request.session["city"],
+                'offer': offer}
+        return render(request, 'sale/checkout_overview.html', context)
 
 
 @login_required
