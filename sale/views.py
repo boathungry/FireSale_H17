@@ -94,5 +94,5 @@ def checkout_final(request, id):
         sale.country = request.session['country']
         sale.city = request.session['city']
         sale.save()
-        request.session.flush()
+        request.session.clear()
         return render(request, "sale/checkout_confirmation.html", context)
