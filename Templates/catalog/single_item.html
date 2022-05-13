@@ -1,10 +1,9 @@
 
 <div class="well_item d-flex align-items-center justify-content-evenly">
     <a class="single_item" href="/catalog/{{ item.id }}">
-        <div class="flex-grow-1">
-            <img class="item-img" src="{{ MEDIA_URL }}{{ item.image.url }}" alt="{{ item.name }}" />
-        </div>
-        <div class="flex-shrink-0">
+        <div class="item-container">
+            <img class="item-img" src="{{ MEDIA_URL }}{{ item.image.url }}" alt="{{ item.name }}" 
+            />
             <h3>{{ item.name }}</h3>
             <p>Buyout price: {{ item.buyout|floatformat:2  }} $</p>
         </div>
