@@ -85,7 +85,7 @@ def checkout_final(request, id):
     if 'shipping_address' in request.session and 'credit_card_number' in request.session:
         context = {'item': Item.objects.get(id=id)}
         authuser = request.user
-        user = User.objects.get(id=authuser.id)
+        user = User.objects.get(id=authuser)
         item = Item.objects.get(id=id)
         sale = Sale()
         sale.itemid = item
