@@ -23,8 +23,8 @@
             {% if reviews %}
             {% for review in reviews %}
                 <div class="single-review">
-                    <span class="reviewer-profile-pic-and-name"><img class="item-img" src="{{ MEDIA_URL }}{{ review.reviewer.image.url }}" alt="{{ review.reviewer.name }}" class="rounded-circle article-img" width="32px" height="32px" /><h5>{{ review.reviewer.name }}</h5></span>
-                    <span class="review-rating-and-stars"><p>{{ review.rating }}</p><img class="item-img" src="{% static "images/star_dark.png" %}" alt="stars" height="16px" width="16px"/></span>
+                    <span class="reviewer-profile-pic-and-name"><img src="{{ MEDIA_URL }}{{ review.reviewer.image.url }}" alt="{{ review.reviewer.name }}" class="rounded-circle article-img" width="32px" height="32px" /><h5>{{ review.reviewer.name }}</h5></span>
+                    <span class="review-rating-and-stars"><p>{{ review.rating }}</p><img src="{% static "images/star_dark.png" %}" alt="stars" height="16px" width="16px"/></span>
                     <span class="review-body"><p>"{{ review.review }}"</p></span>
                 </div>
             {% endfor %}
@@ -45,7 +45,7 @@
     {% endif %}
 
     {% if other_user %}
-        <script>let userid = {{ user.id }}</script>
+        <script>let userid = "{{ user.id }}"</script>
         <script>let csrf = "{{ csrf_token }}"</script>
         <script src="../../static/js/rating.js"></script>
     {% endif %}
