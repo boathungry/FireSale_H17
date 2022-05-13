@@ -35,7 +35,8 @@ def create_checkout(request, id):
             form.fields['city'].initial = request.session['city']
     return render(request, 'sale/buyout_item.html', {
         'form': form,
-        'item': Item.objects.get(pk=id)
+        'item': Item.objects.get(pk=id),
+        'user': User.objects.get(auth=request.user.id)
     })
 
 @login_required
@@ -60,7 +61,8 @@ def create_billing(request, id):
             form.fields['cvv'].initial = request.session['cvv']
     return render(request, 'sale/billing_checkout.html', {
         'form': form,
-        'item': Item.objects.get(pk=id)
+        'item': Item.objects.get(pk=id),
+        'user': User.objects.get(auth=request.user.id)
     })
 
 
@@ -75,7 +77,9 @@ def view_checkout_overview(request, id):
             'shipping_address': request.session["shipping_address"],
             'postal_code': request.session["postal_code"],
             'country': request.session["country"],
-            'city': request.session["city"],}
+            'city': request.session["city"],
+            'user': User.objects.get(auth=request.user.id)
+        }
     return render(request, 'sale/checkout_overview.html', context)
 
 
@@ -83,7 +87,7 @@ def view_checkout_overview(request, id):
 def checkout_final(request, id):
     """Finish checking out"""
     if 'shipping_address' in request.session and 'credit_card_number' in request.session:
-        context = {'item': Item.objects.get(id=id)}
+        context = {'item': Item.objects.get(id=id), 'user': User.objects.get(auth=request.user.id)}
         authuser = request.user
         user = User.objects.get(auth=authuser.id)
         item = Item.objects.get(id=id)

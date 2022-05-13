@@ -70,7 +70,7 @@ def view_account(request):
         'accepted_offers': accepted_offers,
         'reviews': user_reviews
     }
-    return render(request, 'user/account.html', context=user_context)
+    return render(request, 'user/account_loggedin_user.html', context=user_context)
 
 
 def view_other_account(request, userid):
@@ -79,18 +79,19 @@ def view_other_account(request, userid):
     user_reviews = Review.objects.filter(user=user)
     user_context = {
         'other_user': True,
-        'user': user,
+        'viewed_user': user,
+        'user': User.objects.get(auth=request.user.id),
         'accepted_offers': None,
         'reviews': user_reviews
     }
-    return render(request, 'user/account.html', context=user_context)
+    return render(request, 'user/account_other_user.html', context=user_context)
 
 
 def view_user_catalog(request, userid):
     """View all the items sold by a specific user"""
-    user = User.objects.get(id=userid)
+    seller = User.objects.get(id=userid)
     items = Item.objects.filter(sellerid=userid)
-    context = {"user": user, "items": items}
+    context = {"seller": seller, "items": items, 'user': User.objects.get(auth=request.user.id)}
     return render(request, 'user/user_catalog.html', context=context)
 
 
@@ -99,10 +100,10 @@ def view_my_items(request):
     user = get_user(request.user.id)
     try:
         user_items = Item.objects.filter(sellerid=user.id)
-        context = {'user_items': user_items}
+        context = {'user_items': user_items, 'user': user}
         return render(request, 'user/my_items.html', context)
     except ObjectDoesNotExist:
-        return render(request, 'user/my_items.html')
+        return render(request, 'user/my_items.html', {'user': user})
 
 
 def view_my_offers(request):
@@ -113,9 +114,9 @@ def view_my_offers(request):
         item_list = []
         for offer in user_offers:
             item_list.append(Item.objects.get(id=offer.itemid.id))
-        return render(request, 'user/my_offers.html', {'user_offers': user_offers, 'item_list': item_list})
+        return render(request, 'user/my_offers.html', {'user_offers': user_offers, 'item_list': item_list, 'user': user})
     except ObjectDoesNotExist:
-        return render(request, 'user/my_offers.html')
+        return render(request, 'user/my_offers.html', {'user': user})
 
 
 def view_account_settings(request):
