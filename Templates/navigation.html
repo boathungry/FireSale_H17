@@ -46,11 +46,14 @@
                 </span>
         </div>
     </div>
-        <ul class="nav navbar-nav navbar-right align-center">
+        <ul class="nav navbar-nav navbar-right justify-content-end align-items-center">
                 {% if request.user.is_authenticated %}
+                    <li><a href="/User/account"><span class="nav-rating btn btn-sm" role="button">
+                        {{ user.rating }}<i class="bi bi-star"></i>
+                    </span></a></li>
                     <li><a href="/User/account"><span class="btn btn-sm" role="button">
                         <img class="rounded-circle article-img" width="30" height="30" src="{{user.image.url}}" id="img">
-                        </span></a>
+                    </span></a></li>
                     <li><a href="/User/logout"><span class="btn btn-outline-secondary btn-sm" role="button">Log out</span></a></li>
                     {% else %}
                     <li><a href="/User/register"><span class="btn btn-outline-secondary btn-sm" role="button">Sign Up</span></a></li>
