@@ -16,8 +16,10 @@
             <a class="btn btn-secondary" href="/User/account_settings">Account Settings</a>
             {% else %}
             <a class="btn btn-light" href="/User/{{ user.id }}/catalog">View {{ user.name }}'s catalog</a>
+            {% endif %}
             <div id="user-reviews">
             <h4>Reviews:</h4>
+            {% if reviews %}
             {% for review in reviews %}
                 <div class="single-review">
                     <span class="reviewer-profile-pic-and-name"><img src="{{ MEDIA_URL }}{{ review.reviewer.image.url }}" alt="{{ review.reviewer.name }}" class="rounded-circle article-img" width="32px" height="32px" /><h5>{{ review.reviewer.name }}</h5></span>
