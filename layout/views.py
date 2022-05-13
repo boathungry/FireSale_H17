@@ -8,7 +8,7 @@ from catalog.models import Item
 def index(request):
     """View the home page"""
     authid = request.user.id
-    user = User.objects.get(auth=authid)
+    user = User.objects.get(id=authid)
     user_items = Item.objects.filter(sellerid=user.id)
     items = Item.objects.filter(offer_accepted=False).order_by("-id")
     context = {"user": user, "items": items, "user_items": user_items}
@@ -18,5 +18,5 @@ def index(request):
 def view_about(request):
     """View the about page"""
     authid = request.user.id
-    user = User.objects.filter(auth=authid)
+    user = User.objects.filter(id=authid)
     return render(request, 'layout/about.html', context={"user": user})

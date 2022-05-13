@@ -15,7 +15,7 @@ def make_offer(request, id):
     made an offer on the same item, delete the previous offer"""
     if request.method == 'POST':
         item = Item.objects.get(id=id)
-        user = User.objects.get(auth=request.user.id)
+        user = User.objects.get(id=request.user.id)
         try:
             prev_offer = Offer.objects.get(buyerid=user.id, itemid=item.id)
             prev_offer.delete()

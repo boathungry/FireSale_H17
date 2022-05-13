@@ -14,7 +14,7 @@ from django.contrib import messages
 
 def get_user(auth_id):
     """Use the id of django's default user class to find the user in our database."""
-    return User.objects.get(auth=auth_id)
+    return User.objects.get(id=auth_id)
 
 
 def register(request):
@@ -58,7 +58,7 @@ def create_account(request, id):
 def view_account(request):
     """View the account of the user who is currently logged in"""
     auth_id = request.user.id
-    user = User.objects.get(auth=auth_id)
+    user = User.objects.get(id=auth_id)
     user_reviews = Review.objects.filter(user=user)
     try:
         accepted_offers = Offer.objects.filter(buyerid=user.id, accepted=True)

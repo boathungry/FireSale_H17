@@ -67,7 +67,7 @@ def get_item_by_id(request, id):
     item = get_object_or_404(Item, pk=id)
     similar_items = Item.objects.filter(catid=item.catid, offer_accepted=False).exclude(id=id)[:3]
     if request.user.is_authenticated:
-        buyer = User.objects.get(auth=authuser.id)
+        buyer = User.objects.get(id=authuser.id)
     else:
         buyer = None
     return render(request, 'catalog/item_details.html', {
@@ -86,7 +86,7 @@ def create_item(request):
         form = ItemCreateForm(request.POST, request.FILES)
         print(request.user)
         authuser = request.user
-        user = User.objects.get(auth=authuser.id)
+        user = User.objects.get(id=authuser.id)
         if form.is_valid():
             item = Item()
             item.name = form.cleaned_data.get('name')
