@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from user.models import User
 from catalog.models import Item
@@ -8,7 +9,10 @@ from catalog.models import Item
 def index(request):
     """View the home page"""
     authid = request.user.id
-    user = User.objects.get(id=authid)
+    try:
+        user = User.objects.get(id=authid)
+    except ObjectDoesNotExist:
+        user = None
     user_items = Item.objects.filter(sellerid=user)
     items = Item.objects.filter(offer_accepted=False).order_by("-id")
     context = {"user": user, "items": items, "user_items": user_items}
