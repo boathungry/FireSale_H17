@@ -99,20 +99,6 @@ p {
 	vertical-align: text-bottom;
 }
 
-.item-container {
-	border-style: solid;
-	border-color: #111;
-	border-width: 2px;
-	padding: 10px;
-}
-
-.ItemContainer {
-	border-style: solid;
-	border-color: #111;
-	border-width: 2px;
-	padding: 10px;
-}
-
 .item-img {
 	float: left;
     width:  200px;
@@ -120,7 +106,6 @@ p {
     object-fit: cover;
 	background-size: cover;
 	transition: all 0.3s;
-	border: none
 }
 
 .item-img:hover {
