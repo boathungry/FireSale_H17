@@ -64,6 +64,10 @@ p {
 	text-justify: inter-word;
 }
 
+.footer {
+	min-height: 75px;
+}
+
 .single_item:link {
 	color: var(--link-color);
 	text-decoration: none;

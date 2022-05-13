@@ -1,0 +1,10 @@
+<div class="recent-items mt-3">
+        <h4>Recent items:</h4>
+            <div class="catalog-items d-flex flex-row align-content-start flex-wrap">
+                {% for item in items|slice:':4' %}
+                    {% include 'catalog/single_item.html' with item=item %}
+            {% empty %}
+            <p>Sorry, no similar items.</p>
+            {% endfor %}
+            </div>
+        </div>
