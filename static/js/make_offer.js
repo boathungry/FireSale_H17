@@ -8,11 +8,16 @@ offer_button.addEventListener("click", function () {
         request.open("POST", '../../offer/make_offer/' + itemid, true);
         request.setRequestHeader('Content-Type', 'application/json');
         request.setRequestHeader('x-CSRFToken', csrf); //send the csrf token
-        request.addEventListener("loadend", refresh_page)
+        request.addEventListener("loadend", refresh_page) //refresh the page once the request has been successfully sent
         request.send(JSON.stringify({'amount': amount}));
     }
 });
 
+/**
+ * @name refresh_page
+ * @description Refreshes the page.
+ *
+ */
 function refresh_page() {
     window.location.reload()
 }
