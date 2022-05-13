@@ -8,7 +8,7 @@ class User(models.Model):
     rating = models.PositiveIntegerField(default=0)
     image = models.ImageField(null=True, default="static/images/default_pic.jpg")
     email = models.EmailField(max_length=255, blank=True)
-    auth = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
+    id = models.OneToOneField(AuthUser, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
         return f"{self.name} ({self.id})"
