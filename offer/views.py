@@ -85,11 +85,13 @@ def send_email(request, offer, message_type):
                           f'Your offer on item "{offer.itemid.name}" for the amount {offer.amount:.2f} has been accepted!\n'
                           f'Please log into your account to finish the checkout process.'
     }
-    message_name = message_type
-    receiver_email = [offer.itemid.sellerid.email]
+    if message_type == 'Offer made':
+        receiver_email = [offer.itemid.sellerid.email]
+    else:
+        receiver_email = [offer.buyerid.email]
     message = message_type_options[message_type]
     send_mail(
-        message_name + f': {offer.itemid.name}',  # subject
+        message_type + f': {offer.itemid.name}',  # subject
         message,  # message
         settings.EMAIL_HOST_USER,  # from email
         receiver_email  # to email
