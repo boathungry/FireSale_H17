@@ -75,7 +75,8 @@ def view_account(request):
 
 def view_other_account(request, userid):
     """View the account of another user"""
-    user = User.objects.get(id=userid)
+    user_id = AuthUser.objects.get(username=userid).id
+    user = User.objects.get(id=user_id)
     user_reviews = Review.objects.filter(user=user)
     user_context = {
         'other_user': True,
@@ -88,9 +89,10 @@ def view_other_account(request, userid):
 
 def view_user_catalog(request, userid):
     """View all the items sold by a specific user"""
-    user = User.objects.get(id=userid)
+    user_id = AuthUser.objects.get(username=userid).id
+    user = User.objects.get(id=user_id)
     items = Item.objects.filter(sellerid=userid)
-    context = {"user": user, "items": items}
+    context = {"user": user, "items": items, "userid": userid}
     return render(request, 'user/user_catalog.html', context=context)
 
 
@@ -142,7 +144,8 @@ def view_account_settings(request):
 
 def get_average_rating(userid):
     """Use the id of a user(our database, not django default) to look up their average rating"""
-    user = User.objects.get(id=userid)
+    user_id = AuthUser.objects.get(username=userid).id
+    user = User.objects.get(id=user_id)
     reviews = Review.objects.filter(user=user)
     review_avg = reviews.aggregate(Avg('rating'))
     avg_rating = review_avg['rating__avg']
@@ -152,7 +155,8 @@ def get_average_rating(userid):
 def rate_user(request, userid):
     """Create a new review for a user and post it, updating their average rating in the process"""
     if request.method == 'POST':
-        user = User.objects.get(id=userid)
+        user_id = AuthUser.objects.get(username=userid).id
+        user = User.objects.get(id=user_id)
         new_review = Review()
         new_review.reviewer = get_user(request.user.id)
         new_review.user = user
