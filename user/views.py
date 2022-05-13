@@ -42,7 +42,7 @@ def create_account(request, id):
             user.bio = request.POST.get('bio')
             user.image = request.FILES.get('image')
             user.rating = 0
-            user.auth = AuthUser.objects.get(id=id)
+            user.id = AuthUser.objects.get(id=id)
             user.save()
             messages.success(request, f'Account created for {user.name}!')
             return redirect('login')
