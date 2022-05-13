@@ -68,6 +68,7 @@ def create_billing(request, id):
 @login_required
 def view_checkout_overview(request, id):
     """Get an overview of the order"""
+    offer = Offer.objects.get(buyerid=request.user.id, itemid=id)
     if request.method == 'GET':
         context = {
             'item': Item.objects.get(pk=id),
@@ -77,7 +78,7 @@ def view_checkout_overview(request, id):
             'postal_code': request.session["postal_code"],
             'country': request.session["country"],
             'city': request.session["city"],
-            'offer': Offer.objects.get(id=id)}
+            'offer': offer}
     return render(request, 'sale/checkout_overview.html', context)
 
 
