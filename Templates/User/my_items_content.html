@@ -1,0 +1,24 @@
+<div>
+<h3>My items</h3>
+
+    {% if user_items != null %}
+            <div class="catalog-items d-flex flex-row align-content-start flex-wrap">
+                {% for item in user_items %}
+                    {% include 'catalog/single_item.html' with item=item %}
+                    <div class="flex-shrink-1 align-content-start">
+                        {% if item.offer_accepted %}
+                            <button type="button" class="btn btn-secondary" disabled>Offer accepted</button>
+                        {% else %}
+                            <form action="../offer/item_offers/{{ item.id }}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-secondary" value="View offers" />
+                            </form>
+                        {% endif %}
+                        <a class="btn btn-light" href="../catalog/delete_item/{{ item.id }}">Delete</a>
+                    </div>
+                {% empty %}
+                <h4>No items</h4>
+            {% endfor %}
+            </div>
+    {% endif %}
+</div>
