@@ -1,0 +1,10 @@
+<div class="similar-items mt-3">
+        <h4>Similar items:</h4>
+            <div class="catalog-items d-flex flex-row align-content-start flex-wrap">
+                {% for simitem in similar_items %}
+                    {% include 'catalog/single_item.html' with item=simitem %}
+            {% empty %}
+            <p>Sorry, no similar items.</p>
+            {% endfor %}
+            </div>
+        </div>

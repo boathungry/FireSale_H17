@@ -47,7 +47,7 @@
         </div>
     </div>
         <ul class="nav navbar-nav navbar-right align-center">
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                     <li><a href="/User/account"><span class="btn btn-sm" role="button">
                         <img class="rounded-circle article-img" width="30" height="30" src="{{ user_image.url }}" id="img">
                         </span></a>

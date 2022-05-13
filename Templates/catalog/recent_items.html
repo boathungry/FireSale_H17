@@ -4,7 +4,7 @@
                 {% for item in items|slice:':4' %}
                     {% include 'catalog/single_item.html' with item=item %}
             {% empty %}
-            <p>Sorry, no similar items.</p>
+            <p>Sorry, no recent items.</p>
             {% endfor %}
             </div>
         </div>
