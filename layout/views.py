@@ -21,4 +21,4 @@ def index(request):
 
 def view_about(request):
     """View the about page"""
-    return render(request, 'layout/about.html', context={"user": user})
+    return render(request, 'layout/about.html')
