@@ -1,22 +1,21 @@
 <div id="payment-navbar">
-	<span {% if shipping %} data-current {% endif %}
-		>{% if payment or overview %}<a
-			href="{% url 'buyout_item' id=item.id %}"
-			>Shipping Info</a
-		>{% else %}Shipping Info{% endif %}</span
-	>
+	<span {% if shipping %} data-current {% endif %}>
+		{% if payment or overview %}
+		<a>Shipping Info</a>
+		{% else %}Shipping Info{% endif %}
+	</span>
 	>
 	<i class="fa fa-arrow-right"></i>
-	<span {% if payment %} data-current {% endif %}
-		>{% if shipping or overview %}<a href="{% url 'billing_checkout' id=item.id %}"
-			>Payment Info</a
-		>{% else %}Payment Info{% endif %}</span
-	>
+	<span {% if payment %} data-current {% endif %}>
+		{% if shipping or overview %}
+		<a>Payment Info</a>
+		{% else %}Payment Info{% endif %}
+		</span>
 	>
 	<i class="fas fa-arrow-right"></i>
-	<span {% if overview %} data-current {% endif %}
-		>{% if shipping or payment %}<a href="{% url 'checkout_overview' id=item.id %}"
-			>Payment Overview</a
-		>{% else %}Payment Overview{% endif %}</span
-	>
+	<span {% if overview %} data-current {% endif %}>
+		{% if shipping or payment %}
+		<a>Payment Overview</a>
+		{% else %}Payment Overview{% endif %}
+	</span>
 </div>

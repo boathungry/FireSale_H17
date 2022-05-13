@@ -95,9 +95,32 @@ p {
 	vertical-align: text-bottom;
 }
 
+.item-container {
+	border-style: solid;
+	border-color: #111;
+	border-width: 2px;
+	padding: 10px;
+}
+
+.ItemContainer {
+	border-style: solid;
+	border-color: #111;
+	border-width: 2px;
+	padding: 10px;
+}
+
 .item-img {
-	width: 200px;
-	height: 200px;
+	float: left;
+    width:  200px;
+    height: 200px;
+    object-fit: cover;
+	background-size: cover;
+	transition: all 0.3s;
+	border: none
+}
+
+.item-img:hover {
+	transform: scale(1.05)
 }
 
 .form-signin {
