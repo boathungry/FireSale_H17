@@ -156,6 +156,18 @@ p {
 	display: none;
 }
 
+/* My Items */
+
+.my-items-item-container {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+}
+
+#my-items-create-item-btn {
+	margin-top: 20px;
+}
+
 /* Rating */
 
 #user-rating {
