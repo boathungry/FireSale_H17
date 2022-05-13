@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="ItemContainer">
-        <h3>Item Name: {{ item.name }}</h3>
+    <div class="ItemInfo">
+        <h2>Item Name: {{ item.name }}</h2>
         <p>Sold by <a href="../../User/{{ item.sellerid.id }}">{{ item.sellerid.name }}</a></p>
         <p>Description: {{ item.description }}</p>
         <p>Buyout Price: ${{ item.buyout|floatformat:2 }}</p>
         {% if offers %}
         <p>Current highest offer: ${{ highest_offer.amount|floatformat:2 }} offered by {{ highest_offer.buyerid.name }}</p>
         {% endif %}
+    </div>
     {% if item.sellerid != buyer %}
         <div class="buyout-offer-btn">
             <a class="btn btn-secondary" href="/sale/buyout_item/{{ item.id }}">Buyout</a>
@@ -17,9 +18,8 @@
         {% elif item.sellerid == buyer %}
         <div class="buyout-offer-btn">
         <a class="btn btn-secondary" href="/catalog/delete_item/{{ item.id }}">Delete item</a>
-    </div>
+        </div>
     {% endif %}
-    </div>
     <img class="item-img" src="{{ MEDIA_URL }}{{ item.image.url }}" alt="{{ item.name }}" />
     <div class="current-offers">
         <h4>Current offers:</h4>
@@ -37,14 +37,14 @@
             <p>No current offers.</p>
         {% endfor %}
     </div>
-        <div class="similar-items d-flex align-content-stretch flex-wrap">
-        <h3>Similar items:</h3>
-            <div class="catalog-items mt-3">
+        <div class="similar-items mt-3">
+        <h4>Similar items:</h4>
+            <div class="catalog-items d-flex flex-row align-content-start flex-wrap">
                 {% for simitem in similar_items %}
                     {% include 'catalog/single_item.html' with item=simitem %}
-                {% empty %}
-                <p>Sorry, no similar items.</p>
-                {% endfor %}
+            {% empty %}
+            <p>Sorry, no similar items.</p>
+            {% endfor %}
             </div>
         </div>
     {% load static %}
