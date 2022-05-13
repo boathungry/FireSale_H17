@@ -9,7 +9,7 @@ def index(request):
     """View the home page"""
     authid = request.user.id
     user = User.objects.get(auth=authid)
-    user_items = Item.objects.filter(sellerid=user.id)
+    user_items = Item.objects.filter(sellerid=authid)
     items = Item.objects.filter(offer_accepted=False).order_by("-id")
     context = {"user": user, "items": items, "user_items": user_items}
     return render(request, 'layout/index.html', context=context)

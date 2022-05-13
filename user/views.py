@@ -127,7 +127,9 @@ def view_account_settings(request):
             user.name = request.POST.get('name')
             user.email = request.POST.get('email')
             user.bio = request.POST.get('bio')
-            user.image = request.FILES.get('image')
+            form_image = request.FILES.get('image')
+            if form_image:
+                user.image = form_image
             user.save()
             messages.success(request, 'Account successfully changed.')
             return redirect('account')
