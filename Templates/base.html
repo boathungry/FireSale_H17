@@ -27,7 +27,7 @@
     {% block page_title %}
     {% endblock %}
 
-    {% if items %}
+    {% if items and not user_items %}
         {% include 'catalog/order_by.html' %}
     {% endif %}
 

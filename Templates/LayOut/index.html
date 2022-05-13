@@ -6,7 +6,7 @@
             <h2>Welcome to the FireSale homepage {{ user.name|capfirst }}!</h2>
         </div>
         {% if user_items %} {% include "User/my_items_content.html" %} {% endif %}
-        <div class="create item">
+        <div class="create item p-2 m-2 align-center">
             <a href="{% url 'create_item' %}" class="block btn btn-secondary">Create New Item</a>
         </div>
     {% else %}
