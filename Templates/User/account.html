@@ -7,20 +7,17 @@
         {% endfor %}
     {% endif %}
     <div id="account-info">
-        <h2>{{ user.name }}'s profile</h2>
+        <h2>{{ user.name|capfirst }}'s profile</h2>
         <img src="{{ MEDIA_URL }}{{ user.image.url }}" alt="{{ image }}" width="100px" height="100px">
         <h4>{{ user.name }}</h4>
         <span id="user-rating"><p>Rating: {{ user.rating }}</p><img src="{% static "images/star_dark.png" %}" alt="stars" height="16px" width="16px"/></span></span>
         <p>{{ user.bio }}</p>
         {% if not other_user %}
             <a class="btn btn-secondary" href="/User/account_settings">Account Settings</a>
-        {% else %}
-            <a class="btn btn-primary" href="/User/{{ user.id }}/catalog">View {{ user.name }}'s catalog</a>
-        {% endif %}
-
-        <div id="user-reviews">
-        <h4>Reviews:</h4>
-        {% if reviews %}
+            {% else %}
+            <a class="btn btn-light" href="/User/{{ user.id }}/catalog">View {{ user.name }}'s catalog</a>
+            <div id="user-reviews">
+            <h4>Reviews:</h4>
             {% for review in reviews %}
                 <div class="single-review">
                     <span class="reviewer-profile-pic-and-name"><img src="{{ MEDIA_URL }}{{ review.reviewer.image.url }}" alt="{{ review.reviewer.name }}" class="rounded-circle article-img" width="32px" height="32px" /><h5>{{ review.reviewer.name }}</h5></span>

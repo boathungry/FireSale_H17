@@ -2,15 +2,18 @@
     {% block content %}
     {% if user.is_authenticated %}
         <!-- User Home Page -->
-        <div class="UserLayOut d-flex flex-grow-1 mb-5 pb-5"">
+        <div class="UserLayOut d-flex flex-grow-1 mb-5 pb-5">
             <h2>Welcome to the FireSale homepage {{ user.username|capfirst }}!</h2>
         </div>
-        <a href="{% url 'create_item' %}" class="block btn btn-secondary">Create New Item</a>
-
+        {% if user_items %} {% include "User/my_items.html" %} {% endif %}
+        <div class="create item">
+            <a href="{% url 'create_item' %}" class="block btn btn-secondary">Create New Item</a>
+        </div>
     {% else %}
     <!-- Homepage -->
         <div class="LayOut d-flex flex-grow-1">
             <h2>Welcome to the FireSale homepage!</h2>
         </div>
     {% endif %}
+        {% if items %} {% include "catalog/recent_items.html"%} {% endif %}
     {% endblock %}

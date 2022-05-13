@@ -1,5 +1,6 @@
-<div class="accepted-offer-notif">
-    <img src="{{ MEDIA_URL }}{{ offer.itemid.image.url }}" alt="{{ offer.itemid.name }}" class="accepted-offer-notif-img" width="75px" height="auto"/>
+<div class="accepted-offer-notif p-3 m-3 position-center border">
+    <img src="{{ MEDIA_URL }}{{ offer.itemid.image.url }}" alt="{{ offer.itemid.name }}" class="accepted-offer-notif-img"
+         width="75px" height="auto"/>
     <h4>Your offer on '{{ offer.itemid.name }}' has been accepted!</h4>
-    <a class="btn btn-primary" href="../../sale/billing_checkout">Check out now</a>
+    <a class="btn btn-light" href="/sale/buyout_item/{{ offer.itemid.id }}">Check out now</a>
 </div>

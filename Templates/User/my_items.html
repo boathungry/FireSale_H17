@@ -16,11 +16,11 @@
                     {% endif %}
                     <a class="btn btn-light" href="../catalog/delete_item/{{ item.id }}">Delete</a>
                 </div>
-            {% endfor %}
-        </div>
-        {% else %}
+            {% empty %}
             <h4>No items</h4>
+        {% endfor %}
         {% endif %}
-    <p></p>
+    </div>
+
     <a class="btn btn-secondary" href="/catalog/create_item">Create new item</a>
 {% endblock %}
