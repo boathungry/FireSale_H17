@@ -43,16 +43,9 @@
             <p>No current offers.</p>
         {% endfor %}
     </div>
-        <div class="similar-items mt-3">
-        <h4>Similar items:</h4>
-            <div class="catalog-items d-flex flex-row align-content-start flex-wrap">
-                {% for simitem in similar_items %}
-                    {% include 'catalog/single_item.html' with item=simitem %}
-            {% empty %}
-            <p>Sorry, no similar items.</p>
-            {% endfor %}
-            </div>
-        </div>
+
+    {% if similar_items %} {% include "catalog/similar_items.html"%} {% endif %}
+
     {% load static %}
     <!-- Pass the item id and csrf token to the javascript file -->
     <script>let itemid = {{ item.id }}</script>

@@ -47,9 +47,9 @@
         </div>
     </div>
         <ul class="nav navbar-nav navbar-right align-center">
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                     <li><a href="/User/account"><span class="btn btn-sm" role="button">
-                        <img class="rounded-circle article-img" width="30" height="30" src="{{ user_image.url }}" id="img">
+                        <img class="rounded-circle article-img" width="30" height="30" src="{{ user_user.image.url }}" id="img">
                         </span></a>
                     <li><a href="/User/logout"><span class="btn btn-outline-secondary btn-sm" role="button">Log out</span></a></li>
                     {% else %}
