@@ -17,7 +17,7 @@ def make_offer(request, id):
         item = Item.objects.get(id=id)
         user = User.objects.get(id=request.user.id)
         try:
-            prev_offer = Offer.objects.get(buyerid=user.id, itemid=item.id)
+            prev_offer = Offer.objects.get(buyerid=user, itemid=item)
             prev_offer.delete()
         except ObjectDoesNotExist:
             pass
