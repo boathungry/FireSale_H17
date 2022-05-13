@@ -17,8 +17,8 @@ class CheckoutCreateForm(forms.Form):
 class BillingCreateForm(forms.Form):
     credit_card_name = forms.CharField(label='Credit Card Name', required=True, max_length=255)
     credit_card_number = forms.CharField(label='Credit Card Number',required=True, max_length=16, min_length=16)
-    expiration_date = forms.CharField(label='Expiration',required=True, max_length=255)
-    cvv = SecurityCodeField(label='CVV',required=False, max_length=255) 
+    expiration_date = forms.CharField(label='Expiration',required=True, max_length=5)
+    cvv = SecurityCodeField(label='CVV',required=True, max_length=3, min_length=3) 
 
 
 
