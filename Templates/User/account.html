@@ -8,7 +8,7 @@
     {% endif %}
     <div id="account-info">
         <h2>{{ user.name|capfirst }}'s profile</h2>
-        <img class="item-img" src="{{ MEDIA_URL }}{{ user.image.url }}" alt="{{ image }}">
+        <img src="{{ MEDIA_URL }}{{ user.image.url }}" alt="{{ image }}" width="100px" height="100px">
         <h4>{{ user.name }}</h4>
         <span id="user-rating"><p>Rating: {{ user.rating }}</p><img src="{% static "images/star_dark.png" %}" alt="stars" height="16px" width="16px"/></span></span>
         <p>{{ user.bio }}</p>

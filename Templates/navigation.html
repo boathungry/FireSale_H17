@@ -49,10 +49,10 @@
         <ul class="nav navbar-nav navbar-right justify-content-end align-items-center">
                 {% if request.user.is_authenticated %}
                     <li><a href="/User/account"><span class="nav-rating btn btn-sm" role="button">
-                        {{ user.user.rating }}<i class="bi bi-star"></i>
+                        {{ user.rating }}<i class="bi bi-star"></i>
                     </span></a></li>
                     <li><a href="/User/account"><span class="btn btn-sm" role="button">
-                        <img class="rounded-circle article-img" width="30" height="30" src="{{ user.user.image.url}}" id="img">
+                        <img class="rounded-circle article-img" width="30" height="30" src="{{user.image.url}}" id="img">
                     </span></a></li>
                     <li><a href="/User/logout"><span class="btn btn-outline-secondary btn-sm" role="button">Log out</span></a></li>
                     {% else %}
