@@ -11,6 +11,8 @@ from FireSale import settings
 
 
 def make_offer(request, id):
+    """Make an offer on an item, and if the same user has already
+    made an offer on the same item, delete the previous offer"""
     if request.method == 'POST':
         item = Item.objects.get(id=id)
         user = User.objects.get(auth=request.user.id)
@@ -31,18 +33,21 @@ def make_offer(request, id):
 
 
 def cancel_offer(request, id):
+    """Cancel an offer from the 'my offers' page"""
     if request.method == 'POST':
         delete_offer(id)
         return redirect('my_offers')
 
 
 def cancel_offer_itempage(request, id, itemid):
+    """Cancel an offer from the item page"""
     if request.method == 'POST':
         delete_offer(id)
         return redirect('item_details', itemid)
 
 
 def delete_offer(offerid):
+    """Delete the offer with the given id"""
     offer = Offer.objects.get(id=offerid)
     if offer.itemid.offer_accepted:
         offer.itemid.offer_accepted = False
@@ -50,12 +55,14 @@ def delete_offer(offerid):
 
 
 def get_offers_for_item(request, itemid):
+    """Get all offers for the given item"""
     item = Item.objects.get(id=itemid)
     offers = Offer.objects.filter(itemid=item)
     return render(request, 'Offer/offer_list.html', {'offers': offers, 'item': item})
 
 
 def accept_offer(request, offerid):
+    """Accept an offer and send emails to the users who made offers on the item"""
     offer = Offer.objects.get(id=offerid)
     offer.accepted = True
     offer.save()
@@ -68,6 +75,7 @@ def accept_offer(request, offerid):
 
 
 def send_email(request, offer, message_type):
+    """Send emails once an offer has been made or accepted"""
     message_type_options = {
         'Offer made': f'Dear {offer.buyerid.name.capitalize()},\n\n'
                       f'An offer has been made on your item "{offer.itemid.name}" for the amount: {offer.amount:.2f}.\n\n'
