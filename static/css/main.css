@@ -156,7 +156,7 @@ p {
 	display: none;
 }
 
-/* My Items */
+/* My Items & My Offers */
 
 .my-items-item-container {
 	display: flex;
@@ -164,8 +164,23 @@ p {
 	align-content: center;
 }
 
+.my-offers-offer-container {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	margin: 15px;
+}
+
 #my-items-create-item-btn {
 	margin-top: 20px;
+}
+
+#my-offers-info-and-buttons {
+	align-content: center;
+	align-items: center;
+	text-align: center;
 }
 
 /* Rating */

@@ -32,7 +32,7 @@
                     {% csrf_token %}
                     <input id="itempage-cancel-offer-btn" type="submit" class="btn btn-secondary" value="Cancel offer" />
                     </form>
-                {% elif buyer == item.sellerid %}
+                {% elif buyer == item.sellerid and not item.offer_accepted %}
                     <form action="/offer/accept_offer/{{ offer.id }}" method="post">
                     {% csrf_token %}
                     <input id="itempage-accept-offer-btn" type="submit" class="btn btn-secondary" value="Accept offer" />

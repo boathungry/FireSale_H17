@@ -6,21 +6,23 @@
         {% for offer in user_offers %}
             {% for item in item_list %}
                 {% if item.id == offer.itemid.id %}
-                    {% include 'catalog/single_item.html' with item=item %}
-                    <div class="flex-shrink-1 mt-5">
-                    <h4>You offered: {{ offer.amount|floatformat:2 }}$</h4>
-                    {% if offer.accepted == False and item.offer_accepted == False %}
-                        <h5>Status: Bidding ongoing</h5>
-                    {% elif offer.accepted == False and item.offer_accepted == True %}
-                        <h5>Status: Another user's offer has been accepted, pending checkout</h5>
-                    {% elif offer.accepted == True %}
-                        <h5>Status: Your offer has been accepted!</h5>
-                        <a class="btn btn-primary" href="../sale/billing_checkout.html">Check out</a>
-                    {% endif %}
-                    <form action="/offer/cancel_offer/{{ offer.id }}" method="post">
-                        {% csrf_token %}
-                    <input type="submit" class="btn btn-secondary" value="Cancel">
-                    </form>
+                    <div class="my-offers-offer-container">
+                        {% include 'catalog/single_item.html' with item=item %}
+                        <div class="flex-shrink-1 mt-5" id="my-offers-info-and-buttons">
+                            <h4>You offered: {{ offer.amount|floatformat:2 }}$</h4>
+                            {% if offer.accepted == False and item.offer_accepted == False %}
+                                <h5>Status: Bidding ongoing</h5>
+                            {% elif offer.accepted == False and item.offer_accepted == True %}
+                                <h5>Status: Another user's offer has been accepted, pending checkout</h5>
+                            {% elif offer.accepted == True %}
+                                <h5>Status: Your offer has been accepted!</h5>
+                                <a class="btn btn-light" href="../sale/billing_checkout.html">Check out</a>
+                            {% endif %}
+                            <form action="/offer/cancel_offer/{{ offer.id }}" method="post">
+                                {% csrf_token %}
+                            <input type="submit" class="btn btn-secondary" value="Cancel">
+                            </form>
+                        </div>
                     </div>
                 {% endif %}
             {% endfor %}
