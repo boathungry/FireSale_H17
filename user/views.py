@@ -134,7 +134,8 @@ def view_account_settings(request):
         error_string = '\n'.join([' '.join(x for x in l) for l in list(form.errors.values())])
         messages.error(request, error_string)
     return render(request, 'user/account_settings.html', {
-        'form': AccountCreationForm(initial={'name': user.name, 'email': user.email, 'bio': user.bio, 'image': user.image})
+        'form': AccountCreationForm(initial={'name': user.name, 'email': user.email, 'bio': user.bio, 'image': user.image}),
+        'user': User.objects.get(auth=request.user.id)
     })
 
 

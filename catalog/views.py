@@ -31,7 +31,7 @@ def index(request):
         return JsonResponse({'data': items})
 
     elif 'category' in request.GET:
-        context = {'items': Item.objects.filter(catid=request.GET['category'])}
+        context = {'items': Item.objects.filter(catid=request.GET['category']), 'user': User.objects.get(auth=request.user.id)}
         return render(request, 'catalog/index.html', context)
 
     elif 'order_by' in request.GET:
@@ -40,7 +40,8 @@ def index(request):
         return JsonResponse({'data': items})
 
     items = Item.objects.all()
-    context = {'items': items}
+    user = User.objects.get(auth=request.user.id)
+    context = {'items': items, 'user': user}
     return render(request, 'catalog/index.html', context)
 
 
@@ -75,7 +76,8 @@ def get_item_by_id(request, id):
         'offers': offers,
         'buyer': buyer,
         'highest_offer': highest_offer,
-        'similar_items': similar_items
+        'similar_items': similar_items,
+        'user': User.objects.get(auth=request.user.id)
     })
 
 
