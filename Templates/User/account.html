@@ -14,10 +14,11 @@
         <p>{{ user.bio }}</p>
         {% if not other_user %}
             <a class="btn btn-secondary" href="/User/account_settings">Account Settings</a>
-            {% else %}
+        {% else %}
             <a class="btn btn-light" href="/User/{{ user.id }}/catalog">View {{ user.name }}'s catalog</a>
-            {% endif %}
-            <div id="user-reviews">
+        {% endif %}
+
+        <div id="user-reviews">
             <h4>Reviews:</h4>
             {% if reviews %}
             {% for review in reviews %}
@@ -27,12 +28,12 @@
                     <span class="review-body"><p>"{{ review.review }}"</p></span>
                 </div>
             {% endfor %}
-        {% else %}
-            <p>No reviews yet.</p>
-        {% endif %}
-        {% if other_user %}
-            <button type="button" class="btn btn-secondary" id="rating-btn">Rate user</button>
-        {% endif %}
+            {% else %}
+                <p>No reviews yet.</p>
+            {% endif %}
+            {% if other_user %}
+                <button type="button" class="btn btn-secondary" id="rating-btn">Rate user</button>
+            {% endif %}
         </div>
 
     </div>
