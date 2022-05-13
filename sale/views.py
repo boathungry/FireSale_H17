@@ -11,6 +11,7 @@ import datetime
 
 @login_required
 def create_checkout(request, id):
+    """Create the checkout address/name/etc. form and move on to billing once it's been submitted"""
     if request.method == 'POST':
         form = CheckoutCreateForm(data=request.POST)
         if form.is_valid() :#and request.POST.get('step') == 'shipping':
@@ -39,6 +40,7 @@ def create_checkout(request, id):
 
 @login_required
 def create_billing(request, id):
+    """Create the checkout billing form and move on to overview once it's been submitted"""
     if request.method == 'POST':
         form = BillingCreateForm(data=request.POST)
         if form.is_valid():
@@ -64,6 +66,7 @@ def create_billing(request, id):
 
 @login_required
 def view_checkout_overview(request, id):
+    """Get an overview of the order"""
     if request.method == 'GET':
         context = {
             'item': Item.objects.get(pk=id),
@@ -78,6 +81,7 @@ def view_checkout_overview(request, id):
 
 @login_required
 def checkout_final(request, id):
+    """Finish checking out"""
     if 'shipping_address' in request.session and 'credit_card_number' in request.session:
         context = {'item': Item.objects.get(id=id)}
         authuser = request.user
