@@ -59,12 +59,12 @@ def get_order_option(request):
 
 def get_item_by_id(request, id):
     """Gets an item by its id and returns all info necessary for the item detail page"""
-    offers = Offer.objects.filter(itemid=id)
+    item = get_object_or_404(Item, pk=id)
+    offers = Offer.objects.filter(itemid=item)
     highest_offer_dict = offers.aggregate(Max('amount'))
     highest_offer_amount = highest_offer_dict['amount__max']
-    highest_offer = Offer.objects.filter(itemid=id, amount=highest_offer_amount).first()
-    authuser = request.user
-    item = get_object_or_404(Item, pk=id)
+    highest_offer = Offer.objects.filter(itemid=item, amount=highest_offer_amount).first()
+    authuser = request.user.id
     similar_items = Item.objects.filter(catid=item.catid, offer_accepted=False).exclude(id=id)[:3]
     if request.user.is_authenticated:
         buyer = User.objects.get(id=authuser)
